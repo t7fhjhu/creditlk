@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreditlK - Find the Perfect Loan</title>
+    <meta name="description" content="Compare personal loan offers from 10 leading banks. Get competitive rates, flexible terms, and instant pre-approval - all in one place.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="#" class="logo" onclick="switchLanguage('en')">
+                    <div class="logo-icon">C</div>
+                    <span class="logo-text">CreditlK</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop">
+                    <button onclick="scrollToSection('hero')" class="nav-link" data-key="header.home">Home</button>
+                    <button onclick="scrollToSection('loans')" class="nav-link" data-key="header.loanOffers">Loan Offers</button>
+                    <button onclick="scrollToSection('calculator')" class="nav-link" data-key="header.calculator">Calculator</button>
+                    <button onclick="scrollToSection('features')" class="nav-link" data-key="header.whyChooseUs">Why Choose Us</button>
+                    <button onclick="scrollToSection('security')" class="nav-link" data-key="header.security">Security</button>
+                </nav>
+
+                <!-- CTA & Language Toggle -->
+                <div class="header-actions">
+                    <button onclick="toggleLanguage()" class="btn-language" id="languageToggle">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                            <path d="M2 12h20"/>
+                        </svg>
+                        <span data-key="header.language">සිංහල</span>
+                    </button>
+                    <button onclick="scrollToSection('loans')" class="btn-primary" data-key="header.getStarted">Get Started</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="btn-mobile-menu" onclick="toggleMobileMenu()">
+                    <span class="menu-icon">☰</span>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav" id="mobileNav">
+                <button onclick="scrollToSection('hero')" class="nav-link-mobile" data-key="header.home">Home</button>
+                <button onclick="scrollToSection('loans')" class="nav-link-mobile" data-key="header.loanOffers">Loan Offers</button>
+                <button onclick="scrollToSection('calculator')" class="nav-link-mobile" data-key="header.calculator">Calculator</button>
+                <button onclick="scrollToSection('features')" class="nav-link-mobile" data-key="header.whyChooseUs">Why Choose Us</button>
+                <button onclick="scrollToSection('security')" class="nav-link-mobile" data-key="header.security">Security</button>
+                <div class="mobile-actions">
+                    <button onclick="toggleLanguage()" class="btn-language-mobile">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                            <path d="M2 12h20"/>
+                        </svg>
+                        <span data-key="header.language">සිංහල</span>
+                    </button>
+                    <button onclick="scrollToSection('loans')" class="btn-primary" data-key="header.getStarted">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Main Headline -->
+                <div class="hero-text">
+                    <h1 class="hero-title" data-key="hero.title">Find the Perfect Loan for Your Needs</h1>
+                    <p class="hero-subtitle" data-key="hero.subtitle">Compare loan offers from trusted financial institutions and get the best rates available in the market.</p>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 12l2 2 4-4"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <span>No hidden fees</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 12l2 2 4-4"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <span>No impact to credit score</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 12l2 2 4-4"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <span>100% free comparison</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 12l2 2 4-4"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                        <span>Licensed & regulated</span>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hero-cta">
+                    <button onclick="scrollToSection('loans')" class="btn-hero" data-key="hero.compareLoans">Compare Loans Now</button>
+                    <p class="hero-disclaimer">No impact to your credit score • 100% free to use</p>
+                </div>
+
+                <!-- Benefits Cards -->
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                            </svg>
+                        </div>
+                        <h3>Best Rates</h3>
+                        <p>Compare offers from 10+ top banks</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <h3>Fast Approval</h3>
+                        <p>Get approved in as little as same day</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>Secure & Safe</h3>
+                        <p>Bank-level 256-bit SSL encryption</p>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">$500M+</div>
+                        <p class="stat-label">Loans facilitated</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <p class="stat-label">Happy customers</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3.5%</div>
+                        <p class="stat-label">Lowest APR</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <p class="stat-label">Partner banks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="loans" class="main-content">
+        <div class="container">
+            <div class="content-header">
+                <h2 class="section-title" data-key="results.title">Compare Loan Offers</h2>
+                <p class="section-subtitle" id="resultsSubtitle" data-key="results.subtitle">Found 10 loan offers matching your criteria. Compare rates, terms, and features to find the perfect loan for your needs.</p>
+            </div>
+
+            <div class="content-grid">
+                <!-- Filter Sidebar -->
+                <div class="filters-sidebar">
+                    <div class="filter-panel">
+                        <h3 class="filter-title" data-key="filters.title">Filter Loans</h3>
+                        
+                        <!-- Loan Amount -->
+                        <div class="filter-group">
+                            <label class="filter-label" data-key="filters.loanAmount">Loan Amount</label>
+                            <div class="range-inputs">
+                                <div class="range-input">
+                                    <label data-key="filters.from">From</label>
+                                    <input type="number" id="minAmount" value="1000" min="1000" max="100000" step="1000">
+                                </div>
+                                <div class="range-input">
+                                    <label data-key="filters.to">To</label>
+                                    <input type="number" id="maxAmount" value="100000" min="1000" max="100000" step="1000">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interest Rate -->
+                        <div class="filter-group">
+                            <label class="filter-label" data-key="filters.maxInterestRate">Max Interest Rate</label>
+                            <input type="range" id="maxInterestRate" min="5" max="15" value="15" step="0.1">
+                            <span class="range-value" id="interestRateValue">15%</span>
+                        </div>
+
+                        <!-- Loan Term -->
+                        <div class="filter-group">
+                            <label class="filter-label" data-key="filters.loanTerm">Loan Term (Months)</label>
+                            <div class="range-inputs">
+                                <div class="range-input">
+                                    <label data-key="filters.from">From</label>
+                                    <input type="number" id="minTerm" value="12" min="12" max="144" step="12">
+                                </div>
+                                <div class="range-input">
+                                    <label data-key="filters.to">To</label>
+                                    <input type="number" id="maxTerm" value="84" min="12" max="144" step="12">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bank Selection -->
+                        <div class="filter-group">
+                            <label class="filter-label" data-key="filters.selectBanks">Select Banks</label>
+                            <select id="bankSelect" multiple>
+                                <option value="" data-key="filters.allBanks">All Banks</option>
+                            </select>
+                        </div>
+
+                        <!-- Processing Time -->
+                        <div class="filter-group">
+                            <label class="filter-label" data-key="filters.processingTime">Processing Time</label>
+                            <select id="processingTime">
+                                <option value="any" data-key="filters.any">Any</option>
+                                <option value="1-3" data-key="filters.days1_3">1-3 Days</option>
+                                <option value="4-7" data-key="filters.days4_7">4-7 Days</option>
+                                <option value="8-14" data-key="filters.days8_14">8-14 Days</option>
+                                <option value="15+" data-key="filters.days15plus">15+ Days</option>
+                            </select>
+                        </div>
+
+                        <!-- Filter Buttons -->
+                        <div class="filter-buttons">
+                            <button onclick="applyFilters()" class="btn-primary" data-key="filters.applyFilters">Apply Filters</button>
+                            <button onclick="resetFilters()" class="btn-secondary" data-key="filters.resetFilters">Reset Filters</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loan Cards Grid -->
+                <div class="loans-grid">
+                    <div id="loansList" class="loans-container">
+                        <!-- Loan cards will be populated by JavaScript -->
+                    </div>
+
+                    <!-- No Results -->
+                    <div id="noResults" class="no-results" style="display: none;">
+                        <h3 data-key="results.noResults">No loans match your criteria</h3>
+                        <p data-key="results.noResultsDesc">Try adjusting your filters to see more loan options.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Comparison Panel -->
+    <div id="comparisonPanel" class="comparison-panel" style="display: none;">
+        <div class="comparison-content">
+            <div class="comparison-header">
+                <div class="comparison-info">
+                    <h3 data-key="comparison.title">Loan Comparison</h3>
+                    <p><span id="selectedCount">0</span> <span data-key="comparison.selected">selected</span> <span data-key="comparison.loans">loans</span></p>
+                </div>
+                <div class="comparison-actions">
+                    <button onclick="viewComparison()" class="btn-primary" data-key="comparison.compare">Compare</button>
+                    <button onclick="clearAllComparisons()" class="btn-secondary" data-key="comparison.clearAll">Clear All</button>
+                </div>
+            </div>
+            <div id="selectedLoansList" class="selected-loans">
+                <!-- Selected loans will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Modal -->
+    <div id="comparisonModal" class="modal-overlay" style="display: none;" onclick="closeComparisonModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title-container">
+                    <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2z"/>
+                        <path d="M19 11h-4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2z"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    <h3 data-key="comparison.title">Loan Comparison</h3>
+                </div>
+                <button class="modal-close" onclick="closeComparisonModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="comparisonCards" class="comparison-cards">
+                    <!-- Comparison cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">C</div>
+                        <span class="logo-text">CreditlK</span>
+                    </div>
+                    <p class="footer-description" data-key="footer.description">CreditlK helps you find and compare the best loan offers from trusted financial institutions. Make informed decisions about your financial future.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-key="footer.quickLinks">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero" data-key="footer.home">Home</a></li>
+                        <li><a href="#loans" data-key="footer.loanOffers">Loan Offers</a></li>
+                        <li><a href="#calculator" data-key="footer.calculator">Loan Calculator</a></li>
+                        <li><a href="#about" data-key="footer.aboutUs">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-key="footer.support">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#help" data-key="footer.helpCenter">Help Center</a></li>
+                        <li><a href="#contact" data-key="footer.contactUs">Contact Us</a></li>
+                        <li><a href="#faq" data-key="footer.faq">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-key="footer.legal">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#privacy" data-key="footer.privacyPolicy">Privacy Policy</a></li>
+                        <li><a href="#terms" data-key="footer.termsOfService">Terms of Service</a></li>
+                        <li><a href="#disclaimer" data-key="footer.disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 CreditlK. <span data-key="footer.allRightsReserved">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
