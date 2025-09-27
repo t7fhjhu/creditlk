@@ -11,28 +11,28 @@ const loanOffers = [
         id: "1",
         bankName: "CashX",
         logo: "assets/logos/cashx.png",
-        interestRate: 5.99,
+        interestRate: 5,
         minAmount: 5000,
         maxAmount: 200000,
         minTerm: 62,
         maxTerm: 90,
-        processingTime: "Same day",
+        processingTime: "In minutes",
         rating: 4.5,
-        features: ["No prepayment penalty", "Fixed interest rate", "Online application"],
+        features: ["fully online", "Fixed interest rate", "fast transfer"],
         isPopular: true
     },
     {
         id: "2",
         bankName: "Credify",
         logo: "assets/logos/credify.png",
-        interestRate: 6.49,
+        interestRate: 4,
         minAmount: 5000,
         maxAmount: 200000,
         minTerm: 90,
         maxTerm: 360,
-        processingTime: "1-2 days",
+        processingTime: "instant",
         rating: 4.2,
-        features: ["No origination fee", "Flexible repayment", "Mobile banking"]
+        features: ["No origination fee", "Flexible repayment", "multiple offers"]
     },
     {
         id: "3",
@@ -43,9 +43,9 @@ const loanOffers = [
         maxAmount: 150000,
         minTerm: 90,
         maxTerm: 180,
-        processingTime: "2-3 days",
+        processingTime: "In minutes",
         rating: 4.1,
-        features: ["Autopay discount", "No collateral required", "Rate discount for existing customers"]
+        features: ["quick online process", "fast approval"]
     },
     {
         id: "4",
@@ -56,9 +56,9 @@ const loanOffers = [
         maxAmount: 80000,
         minTerm: 90,
         maxTerm: 180,
-        processingTime: "Same day",
+        processingTime: "In minutes",
         rating: 4.3,
-        features: ["No prepayment penalty", "Same day funding", "Free credit score monitoring"]
+        features: ["online application", "Same day funding"]
     },
     {
         id: "5",
@@ -71,7 +71,7 @@ const loanOffers = [
         maxTerm: 90,
         processingTime: "1-2 days",
         rating: 4.4,
-        features: ["No fees", "Flexible payment date", "Pre-qualify without affecting credit"],
+        features: ["flexible terms", "easy online signup"],
         isPopular: true
     },
     {
@@ -83,9 +83,9 @@ const loanOffers = [
         maxAmount: 35000,
         minTerm: 7,
         maxTerm: 30,
-        processingTime: "1-2 days",
+        processingTime: "In minutes",
         rating: 4.0,
-        features: ["No origination fee", "30-day return policy", "Direct payment to creditors"]
+        features: ["24h cancellation option", "fully online"]
     },
     {
         id: "7",
@@ -96,9 +96,9 @@ const loanOffers = [
         maxAmount: 120000,
         minTerm: 120,
         maxTerm: 180,
-        processingTime: "4-7 days",
+        processingTime: "Few hours",
         rating: 4.6,
-        features: ["No fees ever", "Fixed rate", "No prepayment penalty"]
+        features: ["apply in 5 minutes", "fast payout"]
     },
     {
         id: "8",
@@ -109,9 +109,9 @@ const loanOffers = [
         maxAmount: 200000,
         minTerm: 90,
         maxTerm: 360,
-        processingTime: "1 day",
+        processingTime: "in 15 minutes",
         rating: 4.5,
-        features: ["Member benefits", "Career coaching", "Unemployment protection"],
+        features: ["multiple lender network", "direct lender payment"],
         isPopular: true
     },
   // {
@@ -137,7 +137,7 @@ const loanOffers = [
         maxTerm: 360,
         processingTime: "1-3 days",
         rating: 3.9,
-        features: ["Joint applications allowed", "Direct creditor payment", "Personal loan marketplace"]
+        features: ["multiple lender network", "quick online loan"]
     }
 ];
 
