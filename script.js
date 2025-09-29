@@ -144,15 +144,15 @@ const loanOffers = [
 // Bank application URLs
 const bankApplicationUrls = {
     "CashX": "https://go.goodaff.eu/cashx.lk/vvts4btpmh",
-    "Bank of America": "https://www.bankofamerica.com/loans/personal-loans/",
-    "Wells Fargo": "https://www.wellsfargo.com/personal-loans/",
-    "Citibank": "https://online.citi.com/US/banking/citi.action?ID=personal-loans",
-    "Capital One": "https://www.capitalone.com/personal-loans/",
-    "Discover Bank": "https://www.discover.com/personal-loans/",
-    "Marcus by Goldman Sachs": "https://www.marcus.com/us/en/personal-loans",
-    "SoFi": "https://www.sofi.com/personal-loans/",
-    "LightStream": "https://www.lightstream.com/personal-loans",
-    "Prosper": "https://www.prosper.com/personal-loans/"
+    "Credify": "https://go.goodaff.eu/credify.lk/vvts4btpmh",
+    "Fino": "https://go.goodaff.eu/fino.lk/vvts4btpmh",
+    "Loanme": "https://go.goodaff.eu/loanme.lk/vvts4btpmh",
+    "Loanplus": "https://go.goodaff.eu/loanplus.lk/vvts4btpmh",
+    "Monigo": "https://go.goodaff.eu/monigo.lk/vvts4btpmh",
+    "Oncredit": "https://go.goodaff.eu/oncredit.lk/vvts4btpmh",
+    "Soscredit": "https://go.goodaff.eu/soscredit.lk/vvts4btpmh",
+    "Soso": "https://go.goodaff.eu/soso.lk/vvts4btpmh",
+ // "Prosper": "https://www.prosper.com/personal-loans/"
 };
 
 // Translation data
