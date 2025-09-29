@@ -143,7 +143,7 @@ const loanOffers = [
 
 // Bank application URLs
 const bankApplicationUrls = {
-    "Chase Bank": "https://www.chase.com/personal/loans",
+    "CashX": "https://go.goodaff.eu/cashx.lk/vvts4btpmh",
     "Bank of America": "https://www.bankofamerica.com/loans/personal-loans/",
     "Wells Fargo": "https://www.wellsfargo.com/personal-loans/",
     "Citibank": "https://online.citi.com/US/banking/citi.action?ID=personal-loans",
