@@ -1128,6 +1128,41 @@ select[multiple] {
         margin: 1rem;
         max-height: calc(100vh - 2rem);
     }
+    /* Compact filters & cards on tablets/phones */
+    .filters-sidebar { top: auto; }
+    .filter-panel { padding: 0.75rem; }
+    .filter-title { font-size: 1.1rem; margin-bottom: 1rem; }
+    .filter-group { margin-bottom: 1rem; }
+    .range-inputs { grid-template-columns: 1fr; gap: 0.5rem; }
+    .range-input input { padding: 0.5rem; }
+    input[type="range"] { height: 4px; margin: 0.5rem 0; }
+    select { padding: 0.5rem; }
+    .filter-buttons { gap: 0.5rem; margin-top: 1rem; padding-top: 1rem; }
+
+    .loans-container { gap: 1rem; }
+
+    .bank-logo { height: 32px !important; max-width: 140px; margin-top: 8px; transform: translateX(-2px); }
+
+    .loan-card { padding: 0.75rem; }
+    .loan-header { margin-bottom: 0.25rem; }
+    .bank-name { font-size: 1rem; }
+    .popular-badge { padding: 0.15rem 0.5rem; font-size: 0.65rem; }
+
+    .loan-details { margin-bottom: 1rem; }
+    .detail-row { padding: 0.25rem 0; }
+    .detail-label { font-size: 0.8rem; }
+    .detail-value { font-size: 0.85rem; }
+    .interest-rate { font-size: 1.25rem; }
+
+    .star { width: 0.75rem; height: 0.75rem; }
+    .rating-text { font-size: 0.7rem; }
+
+    .features h4 { font-size: 0.8rem; }
+    .features-list li { font-size: 0.8rem; padding: 0.125rem 0; padding-left: 0.875rem; }
+    .features-list li::before { font-size: 0.85em; }
+
+    .loan-actions { gap: 0.5rem; }
+    .btn-apply, .btn-select { padding: 0.5rem; font-size: 0.8rem; }
 }
 
 @media (max-width: 480px) {
@@ -1150,6 +1185,21 @@ select[multiple] {
     .stats-grid {
         grid-template-columns: 1fr;
     }
+    /* Extra compact on small phones */
+    .filter-panel { padding: 0.5rem; }
+    .filter-title { font-size: 1rem; margin-bottom: 0.75rem; }
+    .filter-group { margin-bottom: 0.75rem; }
+    .range-input input, select { padding: 0.45rem; }
+    input[type="range"] { height: 3px; margin: 0.4rem 0; }
+
+    .loans-container { gap: 0.75rem; }
+
+    .loan-card { padding: 0.6rem; }
+    .bank-name { font-size: 0.95rem; }
+    .interest-rate { font-size: 1.15rem; }
+    .detail-label { font-size: 0.75rem; }
+    .detail-value { font-size: 0.8rem; }
+    .btn-apply, .btn-select { padding: 0.45rem; font-size: 0.78rem; }
 }
 
 /* Loading States */
@@ -1289,3 +1339,60 @@ select[multiple] {
   .reasons-grid, .steps-grid { grid-template-columns: 1fr; }
   .cta-banner { flex-direction: column; text-align: center; }
 }
+  
+  /* === Mobile Filters Toggle & Bottom Sheet === */
+  .filters-toggle { display: none; }
+  .btn-filter {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: #10b981; color: #fff; border: none;
+    padding: 0.6rem 1rem; border-radius: 0.5rem; font-weight: 600;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  }
+  .btn-filter .icon { width: 1rem; height: 1rem; }
+
+  .filters-backdrop { display: none; }
+  .filters-backdrop.show {
+    display: block;
+    position: fixed; inset: 0; background: rgba(0,0,0,.4);
+    z-index: 1090;
+  }
+
+  .filters-close { display: none; }
+
+  @media (max-width: 1024px) {
+    .filters-toggle {
+      display: flex; justify-content: center; align-items: center;
+      position: sticky; top: 4rem; z-index: 35;
+      background: #fff; padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;
+    }
+
+    .filters-sidebar {
+      position: fixed;
+      left: 0; right: 0; bottom: 0; top: auto;
+      max-height: 80vh;
+      padding: 0; z-index: 1100; background: #fff;
+      transform: translateY(100%);
+      transition: transform .25s ease;
+      border-top-left-radius: 16px; border-top-right-radius: 16px;
+      box-shadow: 0 -12px 24px rgba(0,0,0,.18);
+    }
+    .filters-sidebar.open { transform: translateY(0); }
+
+    .filter-panel {
+      height: 100%;
+      overflow: auto;
+      border: none;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .filters-close {
+      display: inline-flex; align-items: center; justify-content: center;
+      position: sticky; top: 0;
+      width: 40px; height: 40px; margin: 0.5rem 0.5rem 0 auto;
+      background: #f1f5f9; color: #334155;
+      border: 1px solid #e2e8f0; border-radius: 8px;
+      font-size: 1.25rem; line-height: 1;
+    }
+
+    body.no-scroll { overflow: hidden; }
+  }

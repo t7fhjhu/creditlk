@@ -395,6 +395,7 @@ function init() {
     // Initialize filters
     populateBankFilter();
     setupEventListeners();
+    initFiltersDrawer();
     
     // Display loans
     displayLoans(filteredLoans);
@@ -502,6 +503,103 @@ function setupEventListeners() {
             element.addEventListener('change', applyFilters);
         }
     });
+}
+
+// --- Filters drawer (mobile) ---
+let filtersDrawer = {
+    sidebar: null,
+    backdrop: null,
+    openBtn: null,
+    closeBtn: null
+};
+let lastFocusBeforeFilters = null;
+
+function initFiltersDrawer() {
+    filtersDrawer.sidebar = document.getElementById('filtersSidebar');
+    filtersDrawer.backdrop = document.getElementById('filtersBackdrop');
+
+    // Support multiple possible selectors to be robust to markup
+    filtersDrawer.openBtn =
+        document.getElementById('openFiltersBtn') ||
+        document.querySelector('.btn-filters-toggle');
+
+    filtersDrawer.closeBtn =
+        document.getElementById('closeFiltersBtn') ||
+        document.querySelector('.btn-close-filters') ||
+        (filtersDrawer.sidebar && filtersDrawer.sidebar.querySelector('[data-close="filters"]'));
+
+    // Wire up events if elements exist
+    if (filtersDrawer.openBtn && filtersDrawer.sidebar) {
+        filtersDrawer.openBtn.addEventListener('click', openFilters);
+    }
+    if (filtersDrawer.closeBtn) {
+        filtersDrawer.closeBtn.addEventListener('click', closeFilters);
+    }
+    if (filtersDrawer.backdrop) {
+        filtersDrawer.backdrop.addEventListener('click', closeFilters);
+    }
+
+    // Keyboard handlers (Esc to close, focus trap)
+    document.addEventListener('keydown', onFiltersKeydown);
+}
+
+function openFilters() {
+    if (!filtersDrawer.sidebar) return;
+    lastFocusBeforeFilters = document.activeElement;
+
+    filtersDrawer.sidebar.classList.add('open');
+    if (filtersDrawer.backdrop) filtersDrawer.backdrop.classList.add('show');
+
+    // a11y
+    filtersDrawer.sidebar.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    // focus first focusable control
+    const firstFocusable =
+        filtersDrawer.sidebar.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    (firstFocusable || filtersDrawer.sidebar).focus();
+}
+
+function closeFilters() {
+    if (!filtersDrawer.sidebar) return;
+
+    filtersDrawer.sidebar.classList.remove('open');
+    if (filtersDrawer.backdrop) filtersDrawer.backdrop.classList.remove('show');
+
+    // a11y
+    filtersDrawer.sidebar.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    // restore focus
+    if (lastFocusBeforeFilters) {
+        try { lastFocusBeforeFilters.focus(); } catch (e) {}
+    }
+}
+
+function onFiltersKeydown(e) {
+    const isOpen = filtersDrawer.sidebar && filtersDrawer.sidebar.classList.contains('open');
+    if (!isOpen) return;
+
+    if (e.key === 'Escape') {
+        closeFilters();
+    } else if (e.key === 'Tab') {
+        // trap focus inside the drawer
+        const nodes = filtersDrawer.sidebar.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const focusables = Array.from(nodes).filter(el => !el.disabled && el.offsetParent !== null);
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+            last.focus();
+            e.preventDefault();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            first.focus();
+            e.preventDefault();
+        }
+    }
 }
 
 function updateInterestRateValue() {

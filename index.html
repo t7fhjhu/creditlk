@@ -182,12 +182,23 @@
                 <h2 class="section-title" data-key="results.title">Compare Loan Offers</h2>
                 <p class="section-subtitle" id="resultsSubtitle" data-key="results.subtitle">Found 10 loan offers matching your criteria. Compare rates, terms, and features to find the perfect loan for your needs.</p>
             </div>
+            <!-- Mobile Filters Toggle (shown on ≤1024px) -->
+            <div class="filters-toggle" id="filtersToggle" aria-controls="filtersSidebar" aria-expanded="false">
+              <button type="button" class="btn-filter" onclick="openFilters()">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span data-key="filters.toggle">Filters</span>
+              </button>
+            </div>
 
             <div class="content-grid">
                 <!-- Filter Sidebar -->
-                <div class="filters-sidebar">
+                <div class="filters-sidebar" id="filtersSidebar" role="dialog" aria-modal="true" aria-labelledby="filtersTitle">
                     <div class="filter-panel">
-                        <h3 class="filter-title" data-key="filters.title">Filter Loans</h3>
+                        <button type="button" class="filters-close" aria-label="Close" onclick="closeFilters()">×</button>
+                        <h3 class="filter-title" id="filtersTitle" data-key="filters.title">Filter Loans</h3>
                         
                         <!-- Loan Amount -->
                         <div class="filter-group">
@@ -447,6 +458,8 @@
         </div>
     </footer>
 
+    <!-- Backdrop for mobile filters -->
+    <div id="filtersBackdrop" class="filters-backdrop" onclick="closeFilters()"></div>
     <script src="script.js"></script>
 </body>
 </html>
