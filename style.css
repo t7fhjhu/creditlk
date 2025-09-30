@@ -205,7 +205,7 @@ body {
 }
 
 .hero-content {
-    max-width: 4xl;
+    max-width: 64rem;
     margin: 0 auto;
     text-align: center;
 }
@@ -1205,4 +1205,87 @@ select[multiple] {
   align-items:flex-start;   /* use center if you prefer centered */
   gap:4px;
   margin-bottom:1px;        /* чуть меньше снизу */
+}
+/* === Why Choose Us (features) === */
+.features-section { padding: 80px 0; background: #fff; }
+.features-header { text-align: center; margin-bottom: 40px; }
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-bottom: 48px;
+}
+.reason-card {
+  background: #fff;
+  border: 1px solid #e7ebf0;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+}
+.reason-icon {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: #e9f6ef; /* мягкий зелёный фон */
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+.reason-title { font-weight: 600; margin: 0 0 6px; font-size: 1.125rem; }
+.reason-text { color: #667085; margin: 0; font-size: 0.95rem; line-height: 1.55; }
+
+@media (min-width: 1280px) {
+  .reasons-grid { gap: 36px; }
+  .reason-card { padding: 32px; }
+}
+
+/* Steps */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 24px;
+  margin: 8px 0 48px;
+}
+.step-card {
+  border: 1px dashed #d9e1ea;
+  border-radius: 16px;
+  padding: 20px;
+  background: #fafcfd;
+}
+.step-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: #e9f6ef;
+  color: #0f9150;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.step-title { font-weight: 600; margin: 0 0 6px; }
+.step-text { color: #667085; margin: 0; }
+
+/* CTA banner */
+.cta-banner {
+  border-radius: 16px;
+  padding: 24px;
+  background: #0f9150;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.cta-title { margin: 0 0 4px; }
+.cta-subtitle { margin: 0; opacity: 0.9; }
+.cta-btn { background: #fff; color: #0f9150; }
+.cta-btn:hover { background: #f0fff7; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .reasons-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .steps-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 640px) {
+  .reasons-grid, .steps-grid { grid-template-columns: 1fr; }
+  .cta-banner { flex-direction: column; text-align: center; }
 }

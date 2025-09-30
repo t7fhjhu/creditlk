@@ -231,6 +231,38 @@ const translations = {
             disclaimer: "Disclaimer",
             allRightsReserved: "All rights reserved."
         }
+        ,features: {
+            title: "Why choose CreditLK?",
+            subtitle: "Compare transparent offers from trusted lenders and get approved faster.",
+            items: {
+              bestRate: {
+                title: "Best rate match",
+                text: "We compare 10+ lenders and highlight the total cost (APR & fees)."
+              },
+              fast: {
+                title: "Fast approvals",
+                text: "Instant pre-checks and decisions in minutes with select partners."
+              },
+              transparent: {
+                title: "Transparent pricing",
+                text: "Clear terms and representative examples — no hidden fees."
+              },
+              secure: {
+                title: "Secure & regulated",
+                text: "Bank-level 256-bit SSL; licensed institutions only."
+              }
+            },
+            trust: {
+              noFees: "No hidden fees",
+              noScoreImpact: "No credit score impact for comparing",
+              freeToUse: "100% free to use"
+            },
+            cta: {
+              title: "Find your best offer today",
+              text: "Compare personalized loan offers with transparent terms.",
+              btn: "Compare Loans Now"
+            }
+        }
     },
     si: {
         header: {
@@ -305,6 +337,38 @@ const translations = {
             termsOfService: "සේවා නියමයන්",
             disclaimer: "වියාචනය",
             allRightsReserved: "සියලුම හිමිකම් ඇවිරිණි."
+        }
+        ,features: {
+            title: "ඇයි CreditLK තෝරන්නේ?",
+            subtitle: "පැහැදිලි අනුපාත, වේගවත් අනුමත කිරීම් සහ විශ්වාසනීය ණය සසඳීම් — එකතැනක.",
+            items: {
+              bestRate: {
+                title: "හොඳම අනුපාත ගැලපීම",
+                text: "බැංකු 10+ කින් ලැබෙන යෝජනා සසඳා මුළු වියදම (APR & ගාස්තු) පෙන්වමු."
+              },
+              fast: {
+                title: "ඉක්මන් අනුමත කිරීම්",
+                text: "තෝරාගත් හවුල්කරුවන් සමඟ මිනිත්තු කිහිපයෙන් පෙර-පරීක්ෂා සහ තීරණ."
+              },
+              transparent: {
+                title: "පැහැදිලි ගාස්තු",
+                text: "පැහැදිලි නියම සහ නියෝජිත උදාහරණ — සඟවා ඇති ගාස්තු නැහැ."
+              },
+              secure: {
+                title: "ආරක්ෂිත & නියාමිත",
+                text: "බැංකු මට්ටමේ 256-bit SSL; බලපත්‍රලාභී ආයතන පමණි."
+              }
+            },
+            trust: {
+              noFees: "සඟවා ඇති ගාස්තු නැහැ",
+              noScoreImpact: "සංසන්දනය කිරීමෙන් ක්‍රෙඩිට් ලකුණු බලපාන්නේ නැහැ",
+              freeToUse: "100% නොමිලේ භාවිතා කරන්න"
+            },
+            cta: {
+              title: "ඔබට හොඳම යෝජනාව අදම සොයන්න",
+              text: "පැහැදිලි නියම සමඟ පිරිවිතරයට ගැලපෙන ණය යෝජනා සැසඳන්න.",
+              btn: "Loans සැසඳන්න"
+            }
         }
     }
 };
