@@ -170,7 +170,8 @@ const translations = {
         hero: {
             title: "Find the Perfect Loan for Your Needs",
             subtitle: "Compare loan offers from trusted financial institutions and get the best rates available in the market.",
-            compareLoans: "Compare Loans Now"
+            compareLoans: "Compare Loans Now",
+            disclaimer: "No impact to your credit score • 100% free to use"
         },
         filters: {
             title: "Filter Loans",
@@ -297,7 +298,8 @@ const translations = {
         hero: {
             title: "ඔබගේ අවශ්‍යතාවන්ට හොඳම ණය සොයාගන්න",
             subtitle: "විශ්වාසනීය මූල්‍ය ආයතනවල ණය දීමනා සැසඳීමෙන් වෙළඳපොලේ ඇති හොඳම අනුපාත ලබාගන්න.",
-            compareLoans: "ණය සැසඳීම"
+            compareLoans: "ණය සැසඳීම",
+            disclaimer: "ඔබගේ ණය ශ්‍රේණිගත කිරීමට බලපෑමක් නැත • 100% නොමිලේ භාවිතයට"
         },
         filters: {
             title: "ණය පෙරහන",
