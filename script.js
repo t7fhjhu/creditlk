@@ -198,6 +198,12 @@ const translations = {
             noResults: "No loans match your criteria",
             noResultsDesc: "Try adjusting your filters to see more loan options."
         },
+        stats: {
+            loansFacilitated: "Loans facilitated",
+            happyCustomers: "Happy customers",
+            lowestApr: "Lowest APR",
+            partnerBanks: "Partner banks"
+        },
         loanCard: {
             selectForComparison: "Select for comparison",
             applyNow: "Apply Now",
@@ -366,6 +372,12 @@ const translations = {
             subtitle: "ඔබගේ නිර්නායකවලට ගැලපෙන ණය දීමනා {count}ක් සොයා ගන්නා ලදී. ඔබගේ අවශ්‍යතාවලට හොඳම ණය සොයා ගැනීම සඳහා අනුපාත, කාල සීමා සහ විශේෂාංග සංසන්දනය කරන්න.",
             noResults: "ඔබගේ නිර්නායකවලට ගැලපෙන ණය නොමැත",
             noResultsDesc: "වැඩි ණය විකල්ප බැලීමට ඔබගේ පෙරහන සකස් කිරීමට උත්සාහ කරන්න."
+        },
+        stats: {
+            loansFacilitated: "සහාය කළ ණය",
+            happyCustomers: "සතුටු ගනුදෙනුකරුවන්",
+            lowestApr: "අවම APR",
+            partnerBanks: "හවුල් බැංකු"
         },
         loanCard: {
             selectForComparison: "සංසන්දනය සඳහා තෝරන්න",
