@@ -231,6 +231,20 @@ const translations = {
             disclaimer: "Disclaimer",
             allRightsReserved: "All rights reserved."
         }
+        ,benefits: {
+            best: {
+              title: "Best Rates",
+              text:  "Compare offers from 10+ top banks"
+            },
+            fast: {
+              title: "Fast Approval",
+              text:  "Get approved in as little as the same day"
+            },
+            safe: {
+              title: "Secure & Safe",
+              text:  "Bank-level 256-bit SSL encryption"
+            }
+        }
         ,features: {
             title: "Why choose CreditLK?",
             subtitle: "Compare transparent offers from trusted lenders and get approved faster.",
@@ -337,6 +351,20 @@ const translations = {
             termsOfService: "සේවා නියමයන්",
             disclaimer: "වියාචනය",
             allRightsReserved: "සියලුම හිමිකම් ඇවිරිණි."
+        }
+        ,benefits: {
+            best: {
+              title: "හොඳම පොලී අනුපාත",
+              text:  "ප්‍රධාන බැංකු 10කට වැඩි යෝජනා සසඳන්න"
+            },
+            fast: {
+              title: "ක්ෂණික අනුමැතිය",
+              text:  "එම දිනේම අනුමත විය හැක"
+            },
+            safe: {
+              title: "ආරක්ෂිත සහ විශ්වාසදායි",
+              text:  "බැංකු මට්ටමේ 256-bit SSL සංකේතනය"
+            }
         }
         ,features: {
             title: "ඇයි CreditLK තෝරන්නේ?",
