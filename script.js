@@ -189,7 +189,8 @@ const translations = {
             days8_14: "8-14 Days",
             days15plus: "15+ Days",
             applyFilters: "Apply Filters",
-            resetFilters: "Reset Filters"
+            resetFilters: "Reset Filters",
+            toggle: "Filters"
         },
         results: {
             title: "Compare Loan Offers",
@@ -205,15 +206,55 @@ const translations = {
             months: "months",
             processingTime: "Processing Time",
             days: "days",
-            features: "Features"
+            features: "Features",
+            amountRange: "Amount Range",
+            processingTime: "Processing Time",
+            popular: "Popular",
+            selected: "✓ Selected",
+            aprAbbr: "APR",
+            aprSuffix: "(APR)"
         },
-        comparison: {
+            processingTimes: {
+            "in minutes": "In minutes",
+            "instant": "Instant",
+            "few hours": "Few hours",
+            "in 15 minutes": "In 15 minutes",
+            "1-2 days": "1–2 business days",
+            "2-3 days": "2–3 business days",
+            "4-7 days": "4–7 days",
+            "1-3 days": "1–3 days",
+            "same day": "Same day",
+            "1 business day": "1 business day"
+            },
+            loanFeatures: {
+            "fully online": "Fully online",
+            "fixed interest rate": "Fixed interest rate",
+            "fast transfer": "Fast transfer",
+            "no origination fee": "No origination fee",
+            "flexible repayment": "Flexible repayment",
+            "multiple offers": "Multiple offers",
+            "quick online process": "Quick online process",
+            "fast approval": "Fast approval",
+            "online application": "Online application",
+            "same day funding": "Same day funding",
+            "flexible terms": "Flexible terms",
+            "easy online signup": "Easy online signup",
+            "24h cancellation option": "24h cancellation option",
+            "apply in 5 minutes": "Apply in 5 minutes",
+            "fast payout": "Fast payout",
+            "multiple lender network": "Multiple lender network",
+            "direct lender payment": "Direct lender payment",
+            "quick online loan": "Quick online loan"
+            },
+            comparison: {
             title: "Loan Comparison",
             selected: "selected",
             loans: "loans",
             compare: "Compare",
             clearAll: "Clear All",
-            remove: "Remove"
+            remove: "Remove",
+            limitAlert: "You can compare up to 3 loans at a time.",
+            minToCompareAlert: "Please select at least 2 loans to compare."
         },
         footer: {
             description: "CreditlK helps you find and compare the best loan offers from trusted financial institutions. Make informed decisions about your financial future.",
@@ -317,7 +358,8 @@ const translations = {
             days8_14: "දින 8-14",
             days15plus: "දින 15+",
             applyFilters: "පෙරහන් යොදන්න",
-            resetFilters: "පෙරහන් නැවත සකස් කරන්න"
+            resetFilters: "පෙරහන් නැවත සකස් කරන්න",
+            toggle: "පෙරහන්"
         },
         results: {
             title: "ණය දීමනා සංසන්දනය කරන්න",
@@ -333,15 +375,55 @@ const translations = {
             months: "මාස",
             processingTime: "ක්‍රියාකරණ කාලය",
             days: "දින",
-            features: "විශේෂාංග"
-        },
-        comparison: {
+            features: "විශේෂාංග",
+            amountRange: "මුදල් පරාසය",
+            processingTime: "ක්‍රියාකරණ කාලය",
+            popular: "ජනප්‍රිය",
+            selected: "✓ තෝරාගත්",
+            aprAbbr: "APR",
+            aprSuffix: "(APR)"
+       },
+            processingTimes: {
+            "in minutes": "මිනිත්තු කිහිපයේ",
+            "instant": "ක්ෂණික",
+            "few hours": "පැය කිහිපයකින්",
+            "in 15 minutes": "මිනිත්තු 15කින්",
+            "1-2 days": "දින 1–2",
+            "2-3 days": "දින 2–3",
+            "4-7 days": "දින 4–7",
+            "1-3 days": "දින 1–3",
+            "same day": "එම දිනේ",
+            "1 business day": "ව්‍යාපාරික දින 1"
+            },
+            loanFeatures: {
+            "fully online": "පූර්ණයෙන්ම අන்லයින්",
+            "fixed interest rate": "නිරන්තර පොලී අනුපාතය",
+            "fast transfer": "වේගවත් මුදල් මාරු",
+            "no origination fee": "ප්‍රාරම්භ ගාස්තුවක් නැහැ",
+            "flexible repayment": "චල්‍ය ගෙවීම්",
+            "multiple offers": "බහුවිධ යෝජනා",
+            "quick online process": "ඉක්මන් අන್ಲයින් ක්‍රියාවලිය",
+            "fast approval": "ඉක්මන් අනුමැතිය",
+            "online application": "අන್ಲයින් අයදුම්පත",
+            "same day funding": "එම දිනේ මුදල්",
+            "flexible terms": "අච්චුගමන් නියම",
+            "easy online signup": "සුළු පියවරවලින් ලියාපදිංචි වන්න",
+            "24h cancellation option": "පැය 24 රද්ද කිරීමේ විකල්පය",
+            "apply in 5 minutes": "මිනිත්තු 5යින් අයදුම් කරන්න",
+            "fast payout": "වේගවත් ගෙවීම්",
+            "multiple lender network": "බහු ණය දායක ජාලයක්",
+            "direct lender payment": "ණය දායකයා වෙත සෘජු ගෙවීම",
+            "quick online loan": "ඉක්මන් අන്ലයින් ණය"
+            },
+            comparison: {
             title: "ණය සංසන්දනය",
             selected: "තෝරාගත්",
             loans: "ණය",
             compare: "සංසන්දනය",
             clearAll: "සියල්ල ඉවතලන්න",
-            remove: "ඉවත් කරන්න"
+            remove: "ඉවත් කරන්න",
+            limitAlert: "ඔබට එක්වරක් ණය 3ක් දක්වා පමණක් සංසන්දනය කළ හැක.",
+            minToCompareAlert: "කරුණාකර සංසන්දනය සඳහා අවම ණය 2ක් තෝරන්න."
         },
         footer: {
             description: "CreditlK ඔබට විශ්වාසනීය මූල්‍ය ආයතනවල හොඳම ණය දීමනා සොයා ගැනීමට සහ සැසඳීමට උපකාර කරයි. ඔබගේ මූල්‍ය අනාගතය ගැන දැනුවත් තීරණ ගන්න.",
@@ -442,7 +524,15 @@ function init() {
     // Display loans
     displayLoans(filteredLoans);
     updateResultsCount();
-    
+    displayLoans(filteredLoans);
+updateComparisonPanel();
+
+// Если модалка сравнения открыта — перерисовать её карточки
+const modal = document.getElementById('comparisonModal');
+const comparisonCards = document.getElementById('comparisonCards');
+if (modal && comparisonCards && modal.style.display === 'flex') {
+    comparisonCards.innerHTML = selectedLoans.map(loan => createComparisonCard(loan)).join('');
+}
     // Update interest rate display
     updateInterestRateValue();
 }
@@ -479,20 +569,52 @@ function formatString(template, values) {
 }
 
 function updateLanguage() {
-    // Update all elements with data-key attributes
-    const elements = document.querySelectorAll('[data-key]');
-    elements.forEach(element => {
-        const key = element.getAttribute('data-key');
-        element.textContent = t(key);
-    });
-    
-    // Update page title
-    document.title = currentLanguage === 'si' 
-        ? 'CreditlK - ඔබගේ අවශ්‍යතාවන්ට හොඳම ණය සොයාගන්න'
-        : 'CreditlK - Find the Perfect Loan';
-        
-    // Update results count
+  // 1) Обновляем все элементы с data-key (статический текст)
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if (key) el.textContent = t(key);
+  });
+
+  // 2) Заголовок страницы
+  document.title = (currentLanguage === 'si')
+    ? 'CreditlK - ඔබගේ අවශ්‍යතාවන්ට හොඳම ණය සොයාගන්න'
+    : 'CreditlK - Find the Perfect Loan';
+
+  // Reflect language on <html> and add helper class on <body>
+  document.documentElement.setAttribute('lang', currentLanguage === 'si' ? 'si' : 'en');
+  document.body.classList.toggle('lang-si', currentLanguage === 'si');
+
+  // 3) Пересчёт сабтайтла с количеством результатов
+  if (typeof updateResultsCount === 'function') {
     updateResultsCount();
+  }
+
+  // 4) Перестроить селект банков, но СХРАНИТЬ текущий выбор
+  const bankSelect = document.getElementById('bankSelect');
+  if (bankSelect) {
+    const prevSelected = Array.from(bankSelect.selectedOptions).map(o => o.value);
+    populateBankFilter();
+    Array.from(bankSelect.options).forEach(opt => {
+      if (prevSelected.includes(opt.value)) opt.selected = true;
+    });
+  }
+
+  // 5) Перерисовать динамический контент (карточки и панель сравнения)
+  if (typeof displayLoans === 'function') {
+    displayLoans(Array.isArray(filteredLoans) ? filteredLoans : []);
+  }
+  if (typeof updateComparisonPanel === 'function') {
+    updateComparisonPanel();
+  }
+
+  // 6) Если модалка сравнения открыта — перерисовать её карточки
+  const modal = document.getElementById('comparisonModal');
+  const cards = document.getElementById('comparisonCards');
+  if (modal && cards && getComputedStyle(modal).display === 'flex') {
+    cards.innerHTML = (selectedLoans || [])
+      .map(loan => createComparisonCard(loan))
+      .join('');
+  }
 }
 
 function toggleLanguage() {
@@ -807,16 +929,20 @@ function resetFilters() {
 }
 
 function getProcessingDays(processingTime) {
-    const timeStr = processingTime.toLowerCase();
-    
-    if (timeStr.includes('same day')) return 0;
-    if (timeStr.includes('1 business day')) return 1;
-    if (timeStr.includes('1-2')) return 1.5;
-    if (timeStr.includes('2-3')) return 2.5;
-    if (timeStr.includes('4-7')) return 5.5;
-    if (timeStr.includes('1-3')) return 2;
-    
-    return 7; // Default to 7 days
+    const s = processingTime.toLowerCase();
+
+    if (s.includes('instant')) return 0;
+    if (s.includes('in minutes') || s.includes('minutes')) return 0; // < 1 day
+    if (s.includes('few hours') || s.includes('hours') || s.includes('in 15 minutes')) return 0; // < 1 day
+
+    if (s.includes('same day')) return 0;
+    if (s.includes('1 business day')) return 1;
+    if (s.includes('1-2')) return 1.5;
+    if (s.includes('2-3')) return 2.5;
+    if (s.includes('4-7')) return 5.5;
+    if (s.includes('1-3')) return 2;
+
+    return 7; // default
 }
 
 function getProcessingRange(filterTime) {
@@ -866,7 +992,7 @@ function createLoanCard(loan) {
                         </div>
                     ${loan.logo ? `<img src="${loan.logo}" alt="${loan.bankName} logo" class="bank-logo">` : ""}
                 </div>
-                ${loan.isPopular ? '<span class="popular-badge">Popular</span>' : ''}
+                ${loan.isPopular ? `<span class="popular-badge">${t('loanCard.popular')}</span>` : ''}
             </div>
             
             <div class="loan-details">
@@ -879,26 +1005,26 @@ function createLoanCard(loan) {
                     <span class="detail-value">${loan.minTerm}-${loan.maxTerm} ${t('loanCard.months')}</span>
                 </div>
                 <div class="detail-row">
-                    <span class="detail-label">Amount Range</span>
+                    <span class="detail-label">${t('loanCard.amountRange')}</span>
                     <span class="detail-value">${formatCurrency(loan.minAmount)} - ${formatCurrency(loan.maxAmount)}</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">${t('loanCard.processingTime')}</span>
-                    <span class="detail-value">${loan.processingTime}</span>
+                    <span class="detail-value">${translateProcessingTime(loan.processingTime)}</span>
                 </div>
             </div>
             
             <div class="features">
                 <h4>${t('loanCard.features')}</h4>
                 <ul class="features-list">
-                    ${loan.features.map(feature => `<li>${feature}</li>`).join('')}
+                   ${loan.features.map(feature => `<li>${translateFeature(feature)}</li>`).join('')}
                 </ul>
             </div>
             
             <div class="loan-actions">
                 <button class="btn-apply" onclick="applyForLoan('${loan.id}')">${t('loanCard.applyNow')}</button>
                 <button class="btn-select ${isSelected ? 'selected' : ''}" onclick="toggleLoanSelection('${loan.id}')">
-                    ${isSelected ? '✓ Selected' : t('loanCard.selectForComparison')}
+                    ${isSelected ? t('loanCard.selected') : t('loanCard.selectForComparison')}
                 </button>
             </div>
         </div>
@@ -912,6 +1038,20 @@ function updateResultsCount() {
     
     const template = t('results.subtitle');
     subtitle.textContent = formatString(template, { count: count.toString(), plural });
+}
+// Helpers for translating dynamic fields inside loan cards
+function translateProcessingTime(str) {
+  if (!str) return '';
+  const key = String(str).trim().toLowerCase();
+  const map = (translations[currentLanguage] && translations[currentLanguage].processingTimes) || {};
+  // fallback на EN
+  return map[key] || (translations.en.processingTimes?.[key] || str);
+}
+function translateFeature(str) {
+  if (!str) return '';
+  const key = String(str).trim().toLowerCase();
+  const map = (translations[currentLanguage] && translations[currentLanguage].loanFeatures) || {};
+  return map[key] || (translations.en.loanFeatures?.[key] || str);
 }
 
 // Loan actions
@@ -933,7 +1073,7 @@ function toggleLoanSelection(loanId) {
     } else if (selectedLoans.length < 3) {
         selectedLoans.push(loan);
     } else {
-        alert('You can compare up to 3 loans at a time.');
+        alert(t('comparison.limitAlert'));
         return;
     }
     
@@ -959,7 +1099,7 @@ function updateComparisonPanel() {
         <div class="selected-loan-item">
             <div class="selected-loan-info">
                 <div class="selected-loan-bank">${loan.bankName}</div>
-                <div class="selected-loan-rate">${loan.interestRate}% APR</div>
+                <div class="selected-loan-rate">${loan.interestRate}% ${t('loanCard.aprAbbr')}</div>
             </div>
             <button class="btn-remove" onclick="removeLoanFromComparison('${loan.id}')" title="${t('comparison.remove')}">✕</button>
         </div>
@@ -980,7 +1120,7 @@ function clearAllComparisons() {
 
 function viewComparison() {
     if (selectedLoans.length < 2) {
-        alert('Please select at least 2 loans to compare.');
+        alert(t('comparison.minToCompareAlert'));
         return;
     }
     
@@ -1017,15 +1157,15 @@ function createComparisonCard(loan) {
                         <span class="rating-text">(${loan.rating})</span>
                     </div>
                 </div>
-                ${loan.isPopular ? '<span class="popular-badge">Popular</span>' : ''}
+                ${loan.isPopular ? `<span class="popular-badge">${t('loanCard.popular')}</span>` : ''}
             </div>
             
             <div class="comparison-interest-rate">${loan.interestRate}%</div>
-            <div class="comparison-interest-label">${t('loanCard.interestRate')} (APR)</div>
+            <div class="comparison-interest-label">${t('loanCard.interestRate')} ${t('loanCard.aprSuffix')}</div>
             
             <div class="comparison-details">
                 <div class="comparison-detail-row">
-                    <span class="comparison-detail-label">Amount Range</span>
+                    <span class="comparison-detail-label">${t('loanCard.amountRange')}</span>
                     <span class="comparison-detail-value">${formatCurrency(loan.minAmount)} - ${formatCurrency(loan.maxAmount)}</span>
                 </div>
                 <div class="comparison-detail-row">
@@ -1034,14 +1174,14 @@ function createComparisonCard(loan) {
                 </div>
                 <div class="comparison-detail-row">
                     <span class="comparison-detail-label">${t('loanCard.processingTime')}</span>
-                    <span class="comparison-detail-value">${loan.processingTime}</span>
+                    <span class="comparison-detail-value">${translateProcessingTime(loan.processingTime)}</span>
                 </div>
             </div>
             
             <div class="comparison-features">
                 <h4>${t('loanCard.features')}:</h4>
                 <ul class="comparison-features-list">
-                    ${loan.features.map(feature => `<li>${feature}</li>`).join('')}
+                    ${loan.features.map(feature => `<li>${translateFeature(feature)}</li>`).join('')}
                 </ul>
             </div>
             
