@@ -245,6 +245,12 @@ const translations = {
               text:  "Bank-level 256-bit SSL encryption"
             }
         }
+        ,trust: {
+            noFees:   "No hidden fees",
+            noImpact: "No impact to credit score",
+            free:     "100% free comparison",
+            licensed: "Licensed & regulated"
+        }
         ,features: {
             title: "Why choose CreditLK?",
             subtitle: "Compare transparent offers from trusted lenders and get approved faster.",
@@ -365,6 +371,12 @@ const translations = {
               title: "ආරක්ෂිත සහ විශ්වාසදායි",
               text:  "බැංකු මට්ටමේ 256-bit SSL සංකේතනය"
             }
+        }
+        ,trust: {
+            noFees:   "සඟවා ඇති ගාස්තු නැහැ",
+            noImpact: "ණය ශ්‍රේණිගත කිරීමට බලපෑමක් නොමැත",
+            free:     "100% නොමිලේ සංසන්දනය",
+            licensed: "බලපත්‍ර සහ නියාමිත"
         }
         ,features: {
             title: "ඇයි CreditLK තෝරන්නේ?",
