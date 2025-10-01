@@ -1366,33 +1366,42 @@ select[multiple] {
       background: #fff; padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;
     }
 
-    .filters-sidebar {
-      position: fixed;
-      left: 0; right: 0; bottom: 0; top: auto;
-      max-height: 80vh;
-      padding: 0; z-index: 1100; background: #fff;
-      transform: translateY(100%);
-      transition: transform .25s ease;
-      border-top-left-radius: 16px; border-top-right-radius: 16px;
-      box-shadow: 0 -12px 24px rgba(0,0,0,.18);
-    }
-    .filters-sidebar.open { transform: translateY(0); }
+     .filters-sidebar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0; top: auto;
+    max-height: 80vh;
+    padding: 0; z-index: 1100; background: #fff;
+    transform: translateY(100%);
+    transition: transform .25s ease;
+    border-top-left-radius: 16px; border-top-right-radius: 16px;
+    box-shadow: 0 -12px 24px rgba(0,0,0,.18);
+  }
+  .filters-sidebar.open { transform: translateY(0); }
 
-    .filter-panel {
-      height: 100%;
-      overflow: auto;
-      border: none;
-      border-radius: 16px 16px 0 0;
-    }
+     .filter-panel {
+    height: 100%;
+    overflow: auto;
+    border: none;
+    border-radius: 0;
+    padding: 1rem;
+  }
 
-    .filters-close {
-      display: inline-flex; align-items: center; justify-content: center;
-      position: sticky; top: 0;
-      width: 40px; height: 40px; margin: 0.5rem 0.5rem 0 auto;
-      background: #f1f5f9; color: #334155;
-      border: 1px solid #e2e8f0; border-radius: 8px;
-      font-size: 1.25rem; line-height: 1;
-    }
+      .filters-close {
+    display: inline-flex; align-items: center; justify-content: center;
+    position: sticky; top: 0;
+    width: 40px; height: 40px; margin: 0.5rem 0.5rem 0 auto;
+    background: #f1f5f9; color: #334155;
+    border: 1px solid #e2e8f0; border-radius: 8px;
+    font-size: 1.25rem; line-height: 1;
+    z-index: 1; /* поверх содержимого панели при скролле */
+  }
 
     body.no-scroll { overflow: hidden; }
   }
+  /* Prevent background scroll when drawer is open */
+@media (max-width: 1024px) {
+  body.no-scroll {
+    overflow: hidden;
+    height: 100dvh;
+  }
+}

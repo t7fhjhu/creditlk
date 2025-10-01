@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CreditlK - Find the Perfect Loan</title>
     <meta name="description" content="Compare personal loan offers from 10 leading banks. Get competitive rates, flexible terms, and instant pre-approval - all in one place.">
+    <meta name="theme-color" content="#0ea5a4">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,7 +185,7 @@
             </div>
             <!-- Mobile Filters Toggle (shown on ≤1024px) -->
             <div class="filters-toggle" id="filtersToggle" aria-controls="filtersSidebar" aria-expanded="false">
-              <button type="button" class="btn-filter" onclick="openFilters()">
+              <button type="button" id="filtersToggleBtn" class="btn-filter" onclick="openFilters()" aria-haspopup="dialog" aria-controls="filtersSidebar" aria-expanded="false">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                   <circle cx="11" cy="11" r="8"></circle>
                   <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -195,9 +196,9 @@
 
             <div class="content-grid">
                 <!-- Filter Sidebar -->
-                <div class="filters-sidebar" id="filtersSidebar" role="dialog" aria-modal="true" aria-labelledby="filtersTitle">
+                <div class="filters-sidebar" id="filtersSidebar" role="dialog" aria-modal="true" aria-labelledby="filtersTitle" aria-hidden="true" tabindex="-1">
                     <div class="filter-panel">
-                        <button type="button" class="filters-close" aria-label="Close" onclick="closeFilters()">×</button>
+                        <button type="button" id="filtersCloseBtn" class="filters-close" aria-label="Close" aria-controls="filtersSidebar" onclick="closeFilters()">×</button>
                         <h3 class="filter-title" id="filtersTitle" data-key="filters.title">Filter Loans</h3>
                         
                         <!-- Loan Amount -->
@@ -459,7 +460,7 @@
     </footer>
 
     <!-- Backdrop for mobile filters -->
-    <div id="filtersBackdrop" class="filters-backdrop" onclick="closeFilters()"></div>
+    <div id="filtersBackdrop" class="filters-backdrop" onclick="closeFilters()" aria-hidden="true"></div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -520,6 +520,8 @@ function initFiltersDrawer() {
 
     // Support multiple possible selectors to be robust to markup
     filtersDrawer.openBtn =
+        document.getElementById('filtersToggleBtn') ||
+        document.querySelector('#filtersToggle .btn-filter') ||
         document.getElementById('openFiltersBtn') ||
         document.querySelector('.btn-filters-toggle');
 
@@ -541,40 +543,84 @@ function initFiltersDrawer() {
 
     // Keyboard handlers (Esc to close, focus trap)
     document.addEventListener('keydown', onFiltersKeydown);
+
+    // Auto-close when switching to desktop layout
+    const mq = window.matchMedia('(min-width: 1024px)');
+    if (mq.addEventListener) {
+        mq.addEventListener('change', (e) => { if (e.matches) closeFilters(); });
+    } else if (mq.addListener) {
+        mq.addListener((e) => { if (e.matches) closeFilters(); });
+    }
 }
 
 function openFilters() {
-    if (!filtersDrawer.sidebar) return;
-    lastFocusBeforeFilters = document.activeElement;
+  if (!filtersDrawer.sidebar) return;
 
-    filtersDrawer.sidebar.classList.add('open');
-    if (filtersDrawer.backdrop) filtersDrawer.backdrop.classList.add('show');
+  // Работать как выезжающий дравер только на мобильных/планшетах
+  const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+  if (!isMobile) {
+    // На десктопе ничего не делаем (панель и так слева статично),
+    // и гарантированно убираем возможные следы
+    document.body.classList.remove('no-scroll');
+    if (filtersDrawer.backdrop) filtersDrawer.backdrop.classList.remove('show');
+    return;
+  }
 
-    // a11y
-    filtersDrawer.sidebar.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+  lastFocusBeforeFilters = document.activeElement;
 
-    // focus first focusable control
-    const firstFocusable =
-        filtersDrawer.sidebar.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-    (firstFocusable || filtersDrawer.sidebar).focus();
+  filtersDrawer.sidebar.classList.add('open');
+  if (filtersDrawer.backdrop) filtersDrawer.backdrop.classList.add('show');
+
+  // a11y
+  filtersDrawer.sidebar.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('no-scroll');
+
+  // reflect expanded state on the toggle button/container
+  (function(){
+    const toggle = document.getElementById('filtersToggleBtn') || document.querySelector('#filtersToggle .btn-filter');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+    const toggleContainer = document.getElementById('filtersToggle');
+    if (toggleContainer) toggleContainer.setAttribute('aria-expanded', 'true');
+  })();
+
+  // focus first focusable control
+  const firstFocusable =
+    filtersDrawer.sidebar.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  (firstFocusable || filtersDrawer.sidebar).focus();
 }
 
 function closeFilters() {
-    if (!filtersDrawer.sidebar) return;
+  if (!filtersDrawer.sidebar) return;
 
-    filtersDrawer.sidebar.classList.remove('open');
-    if (filtersDrawer.backdrop) filtersDrawer.backdrop.classList.remove('show');
+  filtersDrawer.sidebar.classList.remove('open');
+  if (filtersDrawer.backdrop) filtersDrawer.backdrop.classList.remove('show');
 
-    // a11y
-    filtersDrawer.sidebar.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+  // a11y
+  filtersDrawer.sidebar.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('no-scroll');
 
-    // restore focus
-    if (lastFocusBeforeFilters) {
-        try { lastFocusBeforeFilters.focus(); } catch (e) {}
-    }
+  // reflect collapsed state on the toggle button/container
+  (function(){
+    const toggle = document.getElementById('filtersToggleBtn') || document.querySelector('#filtersToggle .btn-filter');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    const toggleContainer = document.getElementById('filtersToggle');
+    if (toggleContainer) toggleContainer.setAttribute('aria-expanded', 'false');
+  })();
+
+  // restore focus
+  if (lastFocusBeforeFilters) {
+    try { lastFocusBeforeFilters.focus(); } catch (e) {}
+  }
 }
+
+// Safety: при переходе на широкие экраны гарантированно закрываем дравер и снимаем блокировку скролла
+window.addEventListener('resize', () => {
+  if (window.matchMedia('(min-width: 1025px)').matches) {
+    if (filtersDrawer.sidebar) filtersDrawer.sidebar.classList.remove('open');
+    if (filtersDrawer.backdrop) filtersDrawer.backdrop.classList.remove('show');
+    document.body.classList.remove('no-scroll');
+  }
+});
 
 function onFiltersKeydown(e) {
     const isOpen = filtersDrawer.sidebar && filtersDrawer.sidebar.classList.contains('open');
