@@ -300,8 +300,8 @@ const translations = {
             licensed: "Licensed & regulated"
         }
         ,features: {
-            title: "Why choose CreditLK?",
-            subtitle: "Compare transparent offers from trusted lenders and get approved faster.",
+            title: "Fastest Loans in Sri Lanka",
+            subtitle: "Discover the best loans in Sri Lanka with offers from best lenders. Get quick approval and lower interest rates.",
             items: {
               bestRate: {
                 title: "Best rate match",
@@ -329,6 +329,42 @@ const translations = {
               title: "Find your best offer today",
               text: "Compare personalized loan offers with transparent terms.",
               btn: "Compare Loans Now"
+            },
+            r1: { 
+              title: "Best rates in Sri Lanka", 
+              text: "We compare offers from 10+ banks to ensure the lowest rate and the best cost." 
+            },
+            r2: { 
+              title: "Instant approval", 
+              text: "Fast pre-checks and decisions in minutes with our lenders." 
+            },
+            r3: { 
+              title: "Secure & Trusted", 
+              text: "Your application is encrypted and will never be shared or sold" 
+            },
+            r4: { 
+              title: "Clear pricing", 
+              text: "Clear terms, representative examples, and no hidden fees." 
+            },
+            r5: { 
+              title: "Local lenders", 
+              text: "Offers from Sri Lanka–based, licensed institutions for better eligibility." 
+            },
+            r6: { 
+              title: "Smart matching", 
+              text: "We rank loans by your amount, term, and target rate to save you time." 
+            },
+            s1: { 
+              title: "Tell us your needs", 
+              text: "Complete a 1–2 minute form — no impact to your credit score and get your loan." 
+            },
+            s2: { 
+              title: "Compare offers", 
+              text: "See interest, terms, and fees side-by-side from multiple lenders." 
+            },
+            s3: { 
+              title: "Apply online", 
+              text: "Finish with your chosen lender in minutes and get funds faster." 
             }
         }
     },
@@ -475,8 +511,8 @@ const translations = {
             licensed: "බලපත්‍ර සහ නියාමිත"
         }
         ,features: {
-            title: "ඇයි CreditLK තෝරන්නේ?",
-            subtitle: "පැහැදිලි අනුපාත, වේගවත් අනුමත කිරීම් සහ විශ්වාසනීය ණය සසඳීම් — එකතැනක.",
+            title: "ශ්‍රී ලංකාවේ වේගවත් ණය",
+            subtitle: "ශ්‍රී ලංකාවේ විශ්වාසනීය බැංකු සහ ණය සපයන්නන්ගෙන් හොඳම ණය යෝජනා සොයා ගන්න. වේගවත් අනුමැතිය, අඩු පොලී අනුපාත සහ සම්පූර්ණව විවෘත නියමයන් ලබා ගන්න.",
             items: {
               bestRate: {
                 title: "හොඳම අනුපාත ගැලපීම",
@@ -505,6 +541,15 @@ const translations = {
               text: "පැහැදිලි නියම සමඟ පිරිවිතරයට ගැලපෙන ණය යෝජනා සැසඳන්න.",
               btn: "Loans සැසඳන්න"
             }
+            ,r1:{ title:"ශ්‍රී ලංකාවේ හොඳම අනුපාත", text:"අපි බැංකු 10+ ක යෝජනා සැසඳිමින් අවම අනුපාතය සහ හොඳම මුළු වියදම සනාථ කරමු." }
+            ,r2:{ title:"කඩිනම් අනුමැතිය", text:"තෝරාගත් ණය දායකයන් සමඟ මිනිත්තු කිහිපයෙන්ම පෙර-පරීක්ෂා සහ තීරණ." }
+            ,r3:{ title:"ආරක්ෂිත සහ විශ්වාසදායක", text:"ඔබගේ අයදුම සම්පූර්ණයෙන්ම සංකේතනය කර ඇත; කිසිවිටෙක බෙදා හෝ විකිණීමක් නොවේ." }
+            ,r4:{ title:"පැහැදිලි මිලකරණය", text:"පැහැදිලි කොන්දේසි, නියෝජිත උදාහරණ සහ සඟවා ඇති ගාස්තු නොමැත." }
+            ,r5:{ title:"දේශීය ණය දායකයන්", text:"ශ්‍රී ලංකාවෙන් බලපත්‍ර ලත් ආයතනවල යෝජනා — සුදුසුකම් ලැබීම සෙම." }
+            ,r6:{ title:"ස්මාර්ට් ගැලපීම", text:"ඔබගේ මුදල, කාලය සහ ඉලක්ක අනුපාතය අනුව ණය පටිපාටියට ගෙන, ඔබගේ කාලය ඉතිරි කරයි." }
+            ,s1:{ title:"ඔබේ අවශ්‍යතා කියන්න", text:"මිනිත්තු 1–2ක් ගන්නා කෙටි පෝරමයක් — ණය ශ්‍රේණිගත කිරීමට බලපෑමක් නැත." }
+            ,s2:{ title:"යෝජනා සසඳන්න", text:"බැංකු කිහිපයේ පොලී, නියම සහ ගාස්තු එක් තැනින් සසඳන්න." }
+            ,s3:{ title:"අන්තර්ජාලයෙන් අයදුම් කරන්න", text:"ඔබ තෝරාගත් ණය දායකයා සමඟ මිනිත්තු කිහිපයකින් සම්පූර්ණ කර ඉක්මනින් මුදල් ලබා ගන්න." }
         }
     }
 };
