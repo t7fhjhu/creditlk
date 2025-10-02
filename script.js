@@ -168,8 +168,8 @@ const translations = {
             language: "සිංහල"
         },
         hero: {
-            title: "Find the Perfect Loan for Your Needs",
-            subtitle: "Compare loan offers from trusted financial institutions and get the best rates available in the market.",
+            title: "Best Online Loans in Sri Lanka – Fast Approval & Low Rates",
+            subtitle: "Apply Online and Get Quick Loan Approval from Trusted Lenders in Sri Lanka",
             compareLoans: "Compare Loans Now",
             disclaimer: "No impact to your credit score • 100% free to use"
         },
@@ -193,8 +193,8 @@ const translations = {
             toggle: "Filters"
         },
         results: {
-            title: "Compare Loan Offers",
-            subtitle: "Found {count} loan offer{plural} matching your criteria. Compare rates, terms, and features to find the perfect loan for your needs.",
+            title: "Top Loan Offers from Sri Lanka’s Trusted Banks & Lenders",
+            subtitle: "Found {count} loan offer{plural} matching your criteria. See interest rates, repayment terms, and fees side-by-side.",
             noResults: "No loans match your criteria",
             noResultsDesc: "Try adjusting your filters to see more loan options."
         },
@@ -379,8 +379,8 @@ const translations = {
             language: "English"
         },
         hero: {
-            title: "ඔබගේ අවශ්‍යතාවන්ට හොඳම ණය සොයාගන්න",
-            subtitle: "විශ්වාසනීය මූල්‍ය ආයතනවල ණය දීමනා සැසඳීමෙන් වෙළඳපොලේ ඇති හොඳම අනුපාත ලබාගන්න.",
+            title: "ශ්‍රී ලංකාවේ හොඳම අන්තර්ජාල ණය – වේගවත් අනුමැතිය සහ අඩු පොලී",
+            subtitle: "ශ්‍රී ලංකාවේ විශ්වාසනීය ණය සපයන්නන්ගෙන් මින්ට්ස් කිහිපයකින් ණය අයදුම් කර අනුමැතිය ලබාගන්න",
             compareLoans: "ණය සැසඳීම",
             disclaimer: "ඔබගේ ණය ශ්‍රේණිගත කිරීමට බලපෑමක් නැත • 100% නොමිලේ භාවිතයට"
         },
@@ -404,8 +404,8 @@ const translations = {
             toggle: "පෙරහන්"
         },
         results: {
-            title: "ණය දීමනා සංසන්දනය කරන්න",
-            subtitle: "ඔබගේ නිර්නායකවලට ගැලපෙන ණය දීමනා {count}ක් සොයා ගන්නා ලදී. ඔබගේ අවශ්‍යතාවලට හොඳම ණය සොයා ගැනීම සඳහා අනුපාත, කාල සීමා සහ විශේෂාංග සංසන්දනය කරන්න.",
+            title: "පොලී අනුපාත, ගෙවීම් නියම සහ ගාස්තු එක් එක්ව සසඳන්න.",
+            subtitle: "ඔබගේ නිර්නායකවලට ගැලපෙන ණය දීමනා {count}ක් සොයා ගන්නා ලදී. ශ්‍රී ලංකාවේ විශ්වාසනීය බැංකු සහ ණය සපයන්නන්ගෙන් ඉහළම ණය යෝජනා",
             noResults: "ඔබගේ නිර්නායකවලට ගැලපෙන ණය නොමැත",
             noResultsDesc: "වැඩි ණය විකල්ප බැලීමට ඔබගේ පෙරහන සකස් කිරීමට උත්සාහ කරන්න."
         },
