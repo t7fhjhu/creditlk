@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap');
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -6,7 +7,7 @@
 }
 
 body {
-    font-family: 'Inter', 'Noto Sans Sinhala', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
     color: #334155;
     background-color: #ffffff;
@@ -1208,9 +1209,10 @@ select[multiple] {
     pointer-events: none;
 }
 
-/* Animation for smooth transitions */
-* {
-    transition: all 0.2s ease-in-out;
+/* Animation for smooth transitions (scoped to interactive elements) */
+button, a, .btn-hero, .btn-primary, .btn-secondary, .btn-apply, .btn-select,
+.loan-card, .benefit-card, .reason-card, .step-card {
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
 /* Custom scrollbar */
@@ -1437,17 +1439,55 @@ select[multiple] {
   }
 }
 
-/* Keep Inter as base font and use Sinhala glyphs only when needed */
+/* Sinhala page typography — consistent size with EN and correct shaping */
 html[lang="si"] body,
 html[lang="si"] button,
 html[lang="si"] input,
 html[lang="si"] select,
 html[lang="si"] textarea {
-  font-family: inherit;
-  font-feature-settings: "kern" 1, "liga" 1;
+  font-family: 'Noto Sans Sinhala', -apple-system, system-ui, 'Segoe UI', sans-serif;
+  font-size-adjust: 0.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: normal;
-  font-kerning: normal;
-  font-variant-ligatures: normal;
+  line-height: 1.55;
 }
+
+/* Keep visual scale close to EN */
+html[lang="si"] .hero-title { font-size: clamp(1.9rem, 4.9vw, 3.35rem); line-height: 1.25; }
+html[lang="si"] .hero-subtitle { font-size: clamp(0.95rem, 2.8vw, 1.15rem); }
+html[lang="si"] .section-title { font-size: 1.75rem; }
+html[lang="si"] .bank-name { font-size: 1.05rem; line-height: 1.25; }
+
+html[lang="si"] .detail-label,
+html[lang="si"] .features-list li,
+html[lang="si"] .rating-text { font-size: 0.92em; }
+
+html[lang="si"] .btn-hero { font-size: 1rem; }
+html[lang="si"] .btn-apply,
+html[lang="si"] .btn-select { font-size: 0.85rem; }
+
+/* Stabilize numerals and currency */
+html[lang="si"] .detail-value,
+html[lang="si"] .interest-rate,
+html[lang="si"] .selected-loan-rate,
+html[lang="si"] .comparison-interest-rate {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* --- Sinhala compact sizing for loan cards (keeps 3-up layout) --- */
+html[lang="si"] .loan-card { padding: 1.25rem; }
+html[lang="si"] .loan-header { margin-bottom: 0.15rem; }
+html[lang="si"] .bank-name { font-size: 1.02rem; line-height: 1.2; }
+
+html[lang="si"] .loan-details { margin-bottom: 1rem; }
+html[lang="si"] .detail-row { padding: 0.35rem 0; }
+html[lang="si"] .detail-label { font-size: 0.82rem; }
+html[lang="si"] .detail-value { font-size: 0.9rem; }
+
+html[lang="si"] .features { margin-bottom: 1rem; }
+html[lang="si"] .features h4 { font-size: 0.82rem; margin-bottom: 0.35rem; }
+html[lang="si"] .features-list li { font-size: 0.82rem; line-height: 1.3; }
+
+html[lang="si"] .loan-actions { gap: 0.5rem; }
+html[lang="si"] .btn-apply,
+html[lang="si"] .btn-select { padding: 0.55rem 0.65rem; font-size: 0.8rem; }
