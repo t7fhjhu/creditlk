@@ -1035,9 +1035,9 @@ function displayLoans(loans) {
 
 function createLoanCard(loan) {
     const isSelected = selectedLoans.find(selected => selected.id === loan.id);
-    
+    const bankSlug = loan.bankName.toLowerCase().replace(/[^a-z0-9_-]/g, '');
     return `
-        <div class="loan-card ${isSelected ? 'selected' : ''}" data-loan-id="${loan.id}">
+        <div class="loan-card ${isSelected ? 'selected' : ''}" data-loan-id="${loan.id}" data-bank="${bankSlug}">
             <div class="loan-header">
                 <div>
                     <h3 class="bank-name">${loan.bankName}</h3>
@@ -1079,7 +1079,7 @@ function createLoanCard(loan) {
             </div>
             
             <div class="loan-actions">
-                <button class="btn-apply" onclick="applyForLoan('${loan.id}')">${t('loanCard.applyNow')}</button>
+                <button class="btn-apply js-credit-apply" data-bank="${bankSlug}" onclick="applyForLoan('${loan.id}')">${t('loanCard.applyNow')}</button>
                 <button class="btn-select ${isSelected ? 'selected' : ''}" onclick="toggleLoanSelection('${loan.id}')">
                     ${isSelected ? t('loanCard.selected') : t('loanCard.selectForComparison')}
                 </button>
@@ -1242,7 +1242,7 @@ function createComparisonCard(loan) {
                 </ul>
             </div>
             
-            <button class="comparison-apply-btn" onclick="applyForLoan('${loan.id}')">${t('loanCard.applyNow')}</button>
+            <button class="comparison-apply-btn js-credit-apply" data-bank="${loan.bankName.toLowerCase().replace(/[^a-z0-9_-]/g, '')}" onclick="applyForLoan('${loan.id}')">${t('loanCard.applyNow')}</button>
         </div>
     `;
 }
