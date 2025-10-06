@@ -1296,3 +1296,52 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
+/* Скрываем выбранные офферы для Google Ads трафика */
+(function () {
+  // Блокируемые офферы по значению атрибута data-bank (в нижнем регистре)
+  const BLOCKED_FOR_GADS = new Set(['credify', 'soscredit', 'soso']);
+
+  const TEST_FORCE_PAID = /(?:^|\?)\bforce_paid=1\b/i.test(location.search);
+  const SHOW_ALL_OVERRIDE = /(?:^|\?)\bshow_all=1\b/i.test(location.search);
+
+  function isGoogleAdsTraffic() {
+    if (SHOW_ALL_OVERRIDE) return false;
+    if (TEST_FORCE_PAID) return true;
+
+    const qs = new URLSearchParams(location.search);
+    const gclid  = qs.has('gclid');
+    const gbraid = qs.has('gbraid');
+    const wbraid = qs.has('wbraid');
+    const utm_source = (qs.get('utm_source') || '').toLowerCase();
+    const utm_medium = (qs.get('utm_medium') || '').toLowerCase();
+    const isUtmPaid = utm_source.includes('google') && /(cpc|ppc|paid|sem|ads)/.test(utm_medium);
+
+    return gclid || gbraid || wbraid || isUtmPaid;
+  }
+
+  function findOfferCard(el) {
+    // подстрой при желании под свои классы карточек
+    return el.closest('[data-offer], .offer-card, .bank-card, .credit-offer, .product-card, li, .card') || el;
+  }
+
+  function hideBlocked(scope = document) {
+    scope.querySelectorAll('[data-bank]').forEach((el) => {
+      const bank = (el.getAttribute('data-bank') || '').trim().toLowerCase();
+      if (BLOCKED_FOR_GADS.has(bank)) {
+        const card = findOfferCard(el);
+        card.style.display = 'none';
+        card.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  if (isGoogleAdsTraffic()) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => hideBlocked());
+    } else {
+      hideBlocked();
+    }
+    // На случай динамической подгрузки
+    new MutationObserver(() => hideBlocked()).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
