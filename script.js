@@ -1112,11 +1112,55 @@ function translateFeature(str) {
 }
 
 // Loan actions
+// --- Postback link helpers: generate s1 and fetch GA4 cid as s2 ---
+function getSessionClickId() {
+  const KEY = 'cl_click_id';
+  let cid = sessionStorage.getItem(KEY);
+  if (!cid) {
+    const t = Date.now().toString(36);
+    const r = Math.floor(Math.random() * 1e8).toString(36);
+    cid = 'clk_' + t + '_' + r; // e.g., clk_ma9u1s_w2f4g7
+    sessionStorage.setItem(KEY, cid);
+  }
+  return cid;
+}
+
+function getGa4Cid(cb) {
+  // Uses GA4 gtag API. If not available or fails, returns null.
+  try {
+    if (typeof gtag === 'function') {
+      gtag('get', 'G-V5BJFQ8G10', 'client_id', function (cid) {
+        cb(cid || null);
+      });
+      return;
+    }
+  } catch (e) {}
+  cb(null);
+}
+
 function applyForLoan(loanId) {
     const loan = loanOffers.find(l => l.id === loanId);
-    if (loan && bankApplicationUrls[loan.bankName]) {
-        window.open(bankApplicationUrls[loan.bankName], '_blank', 'noopener,noreferrer');
+    if (!loan) return;
+
+    const base = bankApplicationUrls[loan.bankName];
+    if (!base) return;
+
+    const clickId = getSessionClickId(); // s1
+
+    function openWithCid(ga4cid) {
+        try {
+            const url = new URL(base, location.origin);
+            url.searchParams.set('s1', clickId);
+            if (ga4cid) url.searchParams.set('s2', ga4cid); // s2 = GA4 client_id
+            window.open(url.toString(), '_blank', 'noopener,noreferrer');
+        } catch (e) {
+            // Fallback: open the base URL if URL() fails
+            window.open(base, '_blank', 'noopener,noreferrer');
+        }
     }
+
+    // Try to fetch GA4 client_id; if not available, proceed without s2
+    getGa4Cid(function (cid) { openWithCid(cid); });
 }
 
 function toggleLoanSelection(loanId) {
