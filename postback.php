@@ -2,7 +2,7 @@
 // postback.php
 
 // 1) КОНФИГ — заполни
-const POSTBACK_SECRET = 'ba928e9c06af9d78af2a8b48b0a2c13449268d8770a98c72fa010915e84294113c984e188d3aeeb6b4d00ba138f8b956737df8a63b5c99985fcc623cba6d1b3e';
+const POSTBACK_SECRET = 'f12c17096ca1b3f831a7e9d09b1160cb';
 const LOG_DIR = __DIR__ . '/../postback_logs'; // будет создан автоматически
 
 // GA4 Measurement Protocol (заполни для отправки в аналитику)
