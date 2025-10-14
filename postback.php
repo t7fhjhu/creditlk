@@ -22,14 +22,19 @@ $dedupeFile = LOG_DIR . '/dedupe.csv';       // ключи для дедупа �
 // 3) Считать входные параметры (GET)
 $q = array_change_key_case($_GET, CASE_LOWER);
 
-// Поддержка разных названий параметров (s1 как носитель click_id)
-$clickId   = $q['click_id'] ?? $q['s1'] ?? '';
-$statusRaw = strtoupper($q['status'] ?? '');
-$payout    = isset($q['payout']) ? (float)$q['payout'] : (isset($q['user_commission']) ? (float)$q['user_commission'] : 0.0);
-$txnId     = $q['txn_id'] ?? $q['transaction_id'] ?? '';
-$campaign  = $q['campaign_id'] ?? ($q['campaign'] ?? '');
-$token     = isset($q['token']) ? trim($q['token']) : '';
+// Поддержка длинных и коротких названий параметров:
+// t=token, s=status, c=click_id, x=txn_id, g=campaign_id, pr=partner, u=user_commission
+$clickId   = $q['click_id'] ?? $q['s1'] ?? $q['c'] ?? '';
+$statusRaw = strtoupper($q['status'] ?? ($q['s'] ?? ''));
+$payout    = isset($q['payout']) ? (float)$q['payout']
+            : (isset($q['user_commission']) ? (float)$q['user_commission']
+            : (isset($q['u']) ? (float)$q['u'] : 0.0));
+$txnId     = $q['txn_id'] ?? ($q['transaction_id'] ?? ($q['x'] ?? ''));
+$campaign  = $q['campaign_id'] ?? ($q['campaign'] ?? ($q['g'] ?? ''));
+$partner   = $q['partner'] ?? ($q['pr'] ?? '');
+$token     = isset($q['token']) ? trim($q['token']) : ($q['t'] ?? '');
 $cidParam  = $q['cid'] ?? ($q['s2'] ?? null); // принимаем client_id из cid или s2
+$leadEventOverride = $q['lead_event'] ?? ($q['le'] ?? ''); // опционально: имя события для CPL
 $debug     = isset($q['mp_debug']) && $q['mp_debug'] === '1';
 
 // 4) Валидация секрета
@@ -46,11 +51,11 @@ if ($clickId === '' && $txnId === '') {
   exit;
 }
 
-// 6) Определяем фазу (lead/pending/hold vs approved/declined)
-// GoodAff: A=Approved, D=Declined, P=Pending, H=Hold
+// 6) Определяем фазу
 $phase = 'lead';
 $eventName = 'affiliate_lead';
 
+// Явно признаём L (lead) и P/H/пусто как лид
 if ($statusRaw === 'A' || ($statusRaw === '' && $payout > 0)) {
   $phase = 'approved';
   $eventName = 'affiliate_approved';
@@ -58,11 +63,14 @@ if ($statusRaw === 'A' || ($statusRaw === '' && $payout > 0)) {
   $phase = 'declined';
   $eventName = 'affiliate_declined';
 } else {
-  // P/H/пусто — считаем как lead
+  // L, P, H, '' — считаем как lead
+  if ($leadEventOverride !== '') {
+    // Позволяем переименовать событие для лида, например lead_event=cpl => affiliate_cpl
+    $eventName = ($leadEventOverride === 'cpl') ? 'affiliate_cpl' : $leadEventOverride;
+  }
 }
 
-// 7) Дедупликация по ключу (txn_id|phase) либо (click_id|phase), чтобы CPL и CPA не конфликтовали
-$dedupeKey = ($txnId !== '' ? strtoupper($txnId) : strtoupper($clickId)) . '|' . $phase;
+$dedupeKey = ($txnId !== '' ? strtoupper($txnId) : strtoupper($clickId)) . '|' . $phase . '|' . strtolower($partner);
 $seen = [];
 if (file_exists($dedupeFile)) {
   $lines = @file($dedupeFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -81,6 +89,7 @@ $entry = [
   'click_id'  => $clickId,
   'txn_id'    => $txnId,
   'campaign'  => $campaign,
+  'partner'   => $partner,
   'payout'    => $payout,
   'duplicate' => $isDuplicate ? 1 : 0,
   'ip'        => $_SERVER['REMOTE_ADDR'] ?? '',
@@ -104,8 +113,9 @@ $params = [
   'status'   => $statusRaw === '' ? ($phase === 'approved' ? 'A' : ($phase === 'declined' ? 'D' : 'P')) : $statusRaw,
   'txn_id'   => $txnId,
   'campaign' => $campaign,
+  'partner'  => $partner,
 ];
-if ($phase === 'approved' && $payout > 0) {
+if ($payout > 0) {
   $params['value']    = $payout;
   $params['currency'] = GA4_DEFAULT_CURRENCY;
 }
