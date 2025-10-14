@@ -115,6 +115,12 @@ $params = [
   'campaign' => $campaign,
   'partner'  => $partner,
 ];
+// гарантируем отображение в Realtime и корректную сессию
+$params['engagement_time_msec'] = 1;                  // минимум 1 мс вовлечения
+$params['ga_session_id'] = (int) floor(microtime(true));   // текущий unix timestamp
+$params['ga_session_number'] = 1;                     // первая сессия
+if ($debug) { $params['debug_mode'] = 1; }            // позволяет видеть и в DebugView
+
 if ($payout > 0) {
   $params['value']    = $payout;
   $params['currency'] = GA4_DEFAULT_CURRENCY;
