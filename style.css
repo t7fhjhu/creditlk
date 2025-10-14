@@ -1184,7 +1184,7 @@ select[multiple] {
     }
 
     .stats-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     /* Extra compact on small phones */
     .filter-panel { padding: 0.5rem; }
@@ -1193,14 +1193,62 @@ select[multiple] {
     .range-input input, select { padding: 0.45rem; }
     input[type="range"] { height: 3px; margin: 0.4rem 0; }
 
-    .loans-container { gap: 0.75rem; }
+    .loans-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
 
     .loan-card { padding: 0.6rem; }
+    .bank-logo { height: 28px !important; max-width: 120px; transform: translateX(-2px); }
+    .popular-badge { padding: 0.12rem 0.45rem; font-size: 0.6rem; }
+    .loan-actions { gap: 0.4rem; }
     .bank-name { font-size: 0.95rem; }
     .interest-rate { font-size: 1.15rem; }
     .detail-label { font-size: 0.75rem; }
     .detail-value { font-size: 0.8rem; }
     .btn-apply, .btn-select { padding: 0.45rem; font-size: 0.78rem; }
+
+    /* === Mobile super‑compact hero & benefits (phones only) === */
+    .hero { padding: 1.25rem 0 0.5rem; }
+    .hero-title { font-size: 1.65rem; margin-bottom: 0.5rem; }
+    .hero-subtitle { font-size: 0.92rem; margin: 0.25rem auto 0; max-width: 28rem; }
+    .trust-indicators { gap: 0.5rem; margin-bottom: 0.75rem; }
+    .trust-item { font-size: 0.78rem; }
+    .hero-cta { margin-bottom: 1rem; }
+    .btn-hero { padding: 0.65rem 1rem; font-size: 1rem; border-radius: 0.5rem; }
+    .hero-disclaimer { font-size: 0.72rem; margin-top: 0.5rem; }
+
+    /* Turn 3 feature cards into tiny chips so above‑the‑fold is shorter */
+    .benefits-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin-bottom: 1rem; }
+    .benefit-card { padding: 0.5rem; border-radius: 0.6rem; }
+    .benefit-icon { width: 28px; height: 28px; margin-bottom: 0.35rem; }
+    .benefit-icon svg { width: 16px; height: 16px; }
+    .benefit-card h3 { font-size: 0.9rem; margin-bottom: 0; }
+    .benefit-card p { display: none; } /* hide long descriptions on small phones */
+
+    /* Stats under hero — ultra‑compact on phones */
+    .stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #eef2f7; /* lighter divider on phones */
+    }
+    .stat-item { padding: 0.15rem 0; }
+    .stat-number { font-size: 1.12rem; }
+    .stat-label { font-size: 0.68rem; }
+
+    /* Get to the offers faster */
+    .main-content { padding: 2rem 0 1.25rem; }
+    .content-header { margin-bottom: 1.25rem; }
+    .section-title { font-size: 1.35rem; margin-bottom: 0.5rem; }
+    .section-subtitle { font-size: 0.95rem; }
+
+    /* Why‑Choose‑Us / steps — compact spacing on phones */
+    .features-section { padding: 32px 0 16px; }
+    .reasons-grid { gap: 12px; }
+    .reason-card { padding: 14px; }
+    .reason-title { font-size: 1rem; }
+    .reason-text { font-size: 0.9rem; }
+    .steps-grid { gap: 12px; }
+    .step-card { padding: 14px; }
+    .cta-banner { padding: 16px; }
 }
 
 /* Loading States */
