@@ -24,17 +24,20 @@ $q = array_change_key_case($_GET, CASE_LOWER);
 
 // Поддержка длинных и коротких названий параметров:
 // t=token, s=status, c=click_id, x=txn_id, g=campaign_id, pr=partner, u=user_commission
-$clickId   = $q['click_id'] ?? $q['s1'] ?? $q['c'] ?? '';
+$clickId   = $q['click_id'] ?? $q['c'] ?? '';
 $statusRaw = strtoupper($q['status'] ?? ($q['s'] ?? ''));
+$typeRaw   = strtoupper($q['type']   ?? '');
 $payout    = isset($q['payout']) ? (float)$q['payout']
             : (isset($q['user_commission']) ? (float)$q['user_commission']
             : (isset($q['u']) ? (float)$q['u'] : 0.0));
 $txnId     = $q['txn_id'] ?? ($q['transaction_id'] ?? ($q['x'] ?? ''));
 $campaign  = $q['campaign_id'] ?? ($q['campaign'] ?? ($q['g'] ?? ''));
-$partner   = $q['partner'] ?? ($q['pr'] ?? '');
+// Партнёра берём приоритетно из s3, затем s1 (сохраняя приоритет click_id в s1), затем явные partner/pr
+$partner   = $q['s3'] ?? ($q['s1'] ?? ($q['partner'] ?? ($q['pr'] ?? '')));
 $token     = isset($q['token']) ? trim($q['token']) : ($q['t'] ?? '');
 $cidParam  = $q['cid'] ?? ($q['s2'] ?? null); // принимаем client_id из cid или s2
 $leadEventOverride = $q['lead_event'] ?? ($q['le'] ?? ''); // опционально: имя события для CPL
+$eventParam = strtolower($q['event'] ?? ''); // прямое имя события, если задано явно
 $debug     = isset($q['mp_debug']) && $q['mp_debug'] === '1';
 
 // 4) Валидация секрета
@@ -70,6 +73,43 @@ if ($statusRaw === 'A' || ($statusRaw === '' && $payout > 0)) {
   }
 }
 
+// Если явно задан event, переопределяем имя события и фазу
+if ($eventParam !== '') {
+  switch ($eventParam) {
+    case 'affiliate_cpl':
+      $phase = 'lead';
+      $eventName = 'affiliate_cpl';
+      break;
+    case 'affiliate_approved':
+      $phase = 'approved';
+      $eventName = 'affiliate_approved';
+      break;
+    case 'affiliate_declined':
+      $phase = 'declined';
+      $eventName = 'affiliate_declined';
+      break;
+  }
+}
+
+// Политика: CPL учитываем только на Approved. Если пришло не A — тихо игнорируем.
+if ($eventName === 'affiliate_cpl') {
+  if ($statusRaw !== 'A') {
+    file_put_contents($logFile, json_encode([
+      'ts' => gmdate('c'), 'filtered' => 'cpl_not_approved', 'status' => $statusRaw, 'type' => $typeRaw
+    ], JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND | LOCK_EX);
+    echo 'ok';
+    exit;
+  }
+  // Дополнительно: если указан type и он не CPL — тоже игнорируем
+  if ($typeRaw !== '' && strpos($typeRaw, 'CPL') !== 0) {
+    file_put_contents($logFile, json_encode([
+      'ts' => gmdate('c'), 'filtered' => 'type_not_cpl', 'status' => $statusRaw, 'type' => $typeRaw
+    ], JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND | LOCK_EX);
+    echo 'ok';
+    exit;
+  }
+}
+
 $dedupeKey = ($txnId !== '' ? strtoupper($txnId) : strtoupper($clickId)) . '|' . $phase . '|' . strtolower($partner);
 $seen = [];
 if (file_exists($dedupeFile)) {
@@ -92,6 +132,8 @@ $entry = [
   'partner'   => $partner,
   'payout'    => $payout,
   'duplicate' => $isDuplicate ? 1 : 0,
+  'type'      => $typeRaw,
+  'event_arg' => $eventParam,
   'ip'        => $_SERVER['REMOTE_ADDR'] ?? '',
   'ua'        => $_SERVER['HTTP_USER_AGENT'] ?? '',
 ];
@@ -107,7 +149,13 @@ if ($isDuplicate) {
 file_put_contents($dedupeFile, $dedupeKey . PHP_EOL, FILE_APPEND | LOCK_EX);
 
 // 11) Готовим отправку в GA4 (Measurement Protocol)
-$clientId = $cidParam ?: (string) ((int)(microtime(true) * 1000000) . rand(100000, 999999));
+if ($cidParam) {
+  $clientId = (string)$cidParam;
+} else {
+  $ts = time();
+  $rnd = random_int(100000, 999999);
+  $clientId = $ts . '.' . $rnd; // веб‑стиль client_id X.Y
+}
 $params = [
   'click_id' => $clickId,
   'status'   => $statusRaw === '' ? ($phase === 'approved' ? 'A' : ($phase === 'declined' ? 'D' : 'P')) : $statusRaw,

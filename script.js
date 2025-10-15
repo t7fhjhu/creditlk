@@ -1160,12 +1160,14 @@ function applyForLoan(loanId) {
     if (!base) return;
 
     const clickId = getSessionClickId(); // s1
+    const bankSlug = loan.bankName.toLowerCase().replace(/[^a-z0-9_-]/g, ''); // s3 partner slug
 
     function openWithCid(ga4cid) {
         try {
             const url = new URL(base, location.origin);
             url.searchParams.set('s1', clickId);
             if (ga4cid) url.searchParams.set('s2', ga4cid); // s2 = GA4 client_id
+            url.searchParams.set('s3', bankSlug); // s3 = partner/bank slug
             window.open(url.toString(), '_blank', 'noopener,noreferrer');
         } catch (e) {
             // Fallback: open the base URL if URL() fails
