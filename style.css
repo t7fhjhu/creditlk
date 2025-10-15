@@ -13,6 +13,9 @@ body {
     background-color: #ffffff;
 }
 
+/* Guardrail: avoid horizontal scroll on mobile */
+html, body { max-width: 100%; overflow-x: hidden; }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -539,6 +542,7 @@ select[multiple] {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
     display: flex;             /* <<< добавили */
     flex-direction: column;    /* <<< добавили */
+    overflow: hidden;
 }
 
 .loan-card:hover {
@@ -554,9 +558,13 @@ select[multiple] {
 .loan-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.2rem; /* was 0.75rem — this is the actual gap under the header */
+    align-items: center;          /* keep items vertically centered */
+    gap: 0.5rem;                  /* small gap between name and badge */
+    flex-wrap: wrap;              /* allow badge to move to next line on tiny widths */
+    margin-bottom: 0.2rem;        /* maintain compact spacing */
 }
+
+.loan-header > * { min-width: 0; }
 
 .bank-name {
     font-size: 1.125rem;
@@ -564,6 +572,9 @@ select[multiple] {
     color: #1e293b;
     margin-bottom: 0.25rem;
     line-height: 1.2;
+    min-width: 0;               /* allow flex shrink */
+    overflow: hidden;           /* prevent pushing badge out */
+    text-overflow: ellipsis;    /* gracefully trim long names */
 }
 
 .popular-badge {
@@ -575,6 +586,12 @@ select[multiple] {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.025em;
+    flex: 0 0 auto;             /* don't shrink text unpredictably */
+    margin-left: auto;          /* stick to the right edge inside header */
+    max-width: 45%;             /* keep within card on narrow widths */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .loan-details {
@@ -1198,12 +1215,24 @@ select[multiple] {
     .loan-card { padding: 0.6rem; }
     .bank-logo { height: 28px !important; max-width: 120px; transform: translateX(-2px); }
     .popular-badge { padding: 0.12rem 0.45rem; font-size: 0.6rem; }
+    .popular-badge { max-width: 40%; }
     .loan-actions { gap: 0.4rem; }
     .bank-name { font-size: 0.95rem; }
     .interest-rate { font-size: 1.15rem; }
     .detail-label { font-size: 0.75rem; }
     .detail-value { font-size: 0.8rem; }
     .btn-apply, .btn-select { padding: 0.45rem; font-size: 0.78rem; }
+
+    /* Prevent value column from forcing card width */
+    .detail-row { grid-template-columns: minmax(0,1fr) minmax(0,1fr); column-gap: 8px; }
+    .detail-value { white-space: normal; word-break: break-word; text-align: right; }
+
+    /* Keep buttons inside card width on tiny screens */
+    .btn-select { flex: 1 1 0; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .loan-actions * { min-width: 0; }
+
+    /* Guardrail: prevent viewport expansion by inline elements */
+    .loan-card, .loan-card * { max-width: 100%; }
 
     /* === Mobile super‑compact hero & benefits (phones only) === */
     .hero { padding: 1.25rem 0 0.5rem; }

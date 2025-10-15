@@ -206,6 +206,7 @@ const translations = {
         },
         loanCard: {
             selectForComparison: "Select for comparison",
+            compareShort: "Compare",
             applyNow: "Apply Now",
             interestRate: "Interest Rate",
             loanTerm: "Loan Term",
@@ -417,6 +418,7 @@ const translations = {
         },
         loanCard: {
             selectForComparison: "සංසන්දනය සඳහා තෝරන්න",
+            compareShort: "සංසන්දනය",
             applyNow: "දැන් අයදුම් කරන්න",
             interestRate: "පොලී අනුපාතය",
             loanTerm: "ණය කාලය",
@@ -592,6 +594,13 @@ if (modal && comparisonCards && modal.style.display === 'flex') {
 }
     // Update interest rate display
     updateInterestRateValue();
+    // Обновляем подписи кнопок при переходе через мобильный брейкпоинт
+(function () {
+  const mqCompact = window.matchMedia('(max-width: 480px)');
+  const rerender = () => { if (Array.isArray(filteredLoans)) displayLoans(filteredLoans); };
+  if (mqCompact.addEventListener) mqCompact.addEventListener('change', rerender);
+  else if (mqCompact.addListener) mqCompact.addListener(rerender); // Safari fallback
+})();
 }
 
 // Translation functions
@@ -1081,7 +1090,7 @@ function createLoanCard(loan) {
             <div class="loan-actions">
                 <button class="btn-apply js-credit-apply" data-bank="${bankSlug}" onclick="applyForLoan('${loan.id}')">${t('loanCard.applyNow')}</button>
                 <button class="btn-select ${isSelected ? 'selected' : ''}" onclick="toggleLoanSelection('${loan.id}')">
-                    ${isSelected ? t('loanCard.selected') : t('loanCard.selectForComparison')}
+                    ${getSelectButtonLabel(!!isSelected)}
                 </button>
             </div>
         </div>
@@ -1110,7 +1119,12 @@ function translateFeature(str) {
   const map = (translations[currentLanguage] && translations[currentLanguage].loanFeatures) || {};
   return map[key] || (translations.en.loanFeatures?.[key] || str);
 }
-
+function getSelectButtonLabel(isSelected) {
+  if (isSelected) return t('loanCard.selected');
+  // На телефонах используем короткий вариант
+  const mq = window.matchMedia('(max-width: 480px)');
+  return mq.matches ? t('loanCard.compareShort') : t('loanCard.selectForComparison');
+}
 // Loan actions
 // --- Postback link helpers: generate s1 and fetch GA4 cid as s2 ---
 function getSessionClickId() {
