@@ -561,6 +561,9 @@ let currentLanguage = 'en';
 let filteredLoans = [...loanOffers];
 let selectedLoans = [];
 let isMobileMenuOpen = false;
+// Anti double-click guard for Apply button
+let lastApplyTs = 0;
+let lastApplyLoanId = null;
 
 // Initialize the application
 function init() {
@@ -584,23 +587,25 @@ function init() {
     displayLoans(filteredLoans);
     updateResultsCount();
     displayLoans(filteredLoans);
-updateComparisonPanel();
+    updateComparisonPanel();
 
-// Если модалка сравнения открыта — перерисовать её карточки
-const modal = document.getElementById('comparisonModal');
-const comparisonCards = document.getElementById('comparisonCards');
-if (modal && comparisonCards && modal.style.display === 'flex') {
-    comparisonCards.innerHTML = selectedLoans.map(loan => createComparisonCard(loan)).join('');
-}
+    // Если модалка сравнения открыта — перерисовать её карточки
+    const modal = document.getElementById('comparisonModal');
+    const comparisonCards = document.getElementById('comparisonCards');
+    if (modal && comparisonCards && modal.style.display === 'flex') {
+        comparisonCards.innerHTML = selectedLoans.map(loan => createComparisonCard(loan)).join('');
+    }
     // Update interest rate display
     updateInterestRateValue();
+    // Warm up GA4 client_id (s2) cache early
+    getGa4Cid(() => {});
     // Обновляем подписи кнопок при переходе через мобильный брейкпоинт
-(function () {
-  const mqCompact = window.matchMedia('(max-width: 480px)');
-  const rerender = () => { if (Array.isArray(filteredLoans)) displayLoans(filteredLoans); };
-  if (mqCompact.addEventListener) mqCompact.addEventListener('change', rerender);
-  else if (mqCompact.addListener) mqCompact.addListener(rerender); // Safari fallback
-})();
+    (function () {
+      const mqCompact = window.matchMedia('(max-width: 480px)');
+      const rerender = () => { if (Array.isArray(filteredLoans)) displayLoans(filteredLoans); };
+      if (mqCompact.addEventListener) mqCompact.addEventListener('change', rerender);
+      else if (mqCompact.addListener) mqCompact.addListener(rerender); // Safari fallback
+    })();
 }
 
 // Translation functions
@@ -1139,20 +1144,78 @@ function getSessionClickId() {
   return cid;
 }
 
+// --- helpers for GA client id extraction from cookies ---
+function getCookie(name) {
+  const eq = name + '=';
+  const parts = document.cookie.split(';');
+  for (let i = 0; i < parts.length; i++) {
+    let c = parts[i].trim();
+    if (c.indexOf(eq) === 0) return decodeURIComponent(c.substring(eq.length));
+  }
+  return null;
+}
+function parseGaClientIdFromCookie() {
+  // _ga cookie often looks like GA1.1.1234567890.1234567890
+  const raw = getCookie('_ga');
+  if (!raw) return null;
+  const pieces = raw.split('.');
+  if (pieces.length < 4) return null;
+  const cid = pieces.slice(-2).join('.'); // last two segments
+  return cid || null;
+}
+
 function getGa4Cid(cb) {
-  // Uses GA4 gtag API. If not available or fails, returns null.
   try {
+    // 1) cache in sessionStorage to avoid repeated lookups
+    const CACHE_KEY = 'ga4_cid_cache';
+    const cached = sessionStorage.getItem(CACHE_KEY);
+    if (cached) {
+      cb(cached);
+      return;
+    }
+
+    // 2) try official gtag getter (preferred)
     if (typeof gtag === 'function') {
       gtag('get', 'G-V5BJFQ8G10', 'client_id', function (cid) {
-        cb(cid || null);
+        if (cid) {
+          try { sessionStorage.setItem(CACHE_KEY, cid); } catch (e) {}
+          cb(cid);
+        } else {
+          // 3) fallback to helper cookie (_ga_cid if set) or parse _ga
+          const cidFromHelper = getCookie('_ga_cid') || parseGaClientIdFromCookie();
+          if (cidFromHelper) {
+            try { sessionStorage.setItem(CACHE_KEY, cidFromHelper); } catch (e) {}
+            cb(cidFromHelper);
+          } else {
+            cb(null);
+          }
+        }
       });
       return;
     }
-  } catch (e) {}
+
+    // 3) no gtag available: try cookies directly
+    const cidFromCookie = getCookie('_ga_cid') || parseGaClientIdFromCookie();
+    if (cidFromCookie) {
+      try { sessionStorage.setItem(CACHE_KEY, cidFromCookie); } catch (e) {}
+      cb(cidFromCookie);
+      return;
+    }
+  } catch (e) {
+    // swallow and continue to null
+  }
   cb(null);
 }
 
 function applyForLoan(loanId) {
+    // prevent accidental double opening within 600ms for the same loan
+    const nowTs = Date.now();
+    if (lastApplyLoanId === loanId && (nowTs - lastApplyTs) < 600) {
+      return;
+    }
+    lastApplyLoanId = loanId;
+    lastApplyTs = nowTs;
+
     const loan = loanOffers.find(l => l.id === loanId);
     if (!loan) return;
 
@@ -1355,6 +1418,29 @@ document.addEventListener('keydown', function(event) {
             closeComparisonModal();
         }
     }
+});
+
+// Delegated click handler for any current/future Apply buttons
+document.addEventListener('click', function (e) {
+  const btn = e.target.closest('.js-credit-apply');
+  if (!btn) return;
+
+  // prevent default link/button behavior to avoid duplicates
+  e.preventDefault();
+
+  // Prefer loan id from nearest card
+  const card = btn.closest('[data-loan-id]');
+  if (card) {
+    const id = card.getAttribute('data-loan-id');
+    if (id) { applyForLoan(id); return; }
+  }
+
+  // Fallback: use slug in data-bank to find matching loan
+  const slug = (btn.getAttribute('data-bank') || '').toLowerCase().replace(/[^a-z0-9_-]/g, '');
+  if (slug) {
+    const match = loanOffers.find(l => l.bankName.toLowerCase().replace(/[^a-z0-9_-]/g, '') === slug);
+    if (match) { applyForLoan(match.id); }
+  }
 });
 /* Скрываем выбранные офферы для Google Ads трафика */
 (function () {
