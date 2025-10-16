@@ -179,7 +179,7 @@ window.LOANS = window.LOANS || [
     processing: "In minutes",
     rating: 4.5,
     features: ["Fully online", "Fixed interest rate", "Fast transfer"],
-    url: "https://go.goodaff.eu/cashx.lk/apply",
+    url: "https://go.goodaff.eu/cashx.lk/vvts4btpmh",
     popular: true
   },
   {
@@ -197,7 +197,7 @@ window.LOANS = window.LOANS || [
     processing: "Same day",
     rating: 4.7,
     features: ["No collateral", "Flexible repayment", "24/7 support"],
-    url: "https://go.goodaff.eu/loanplus.lk/apply",
+    url: "https://go.goodaff.eu/loanplus.lk/vvts4btpmh",
     popular: true
   },
   {
@@ -215,7 +215,7 @@ window.LOANS = window.LOANS || [
     processing: "Within 1 hour",
     rating: 4.3,
     features: ["Instant approval", "No hidden fees", "Easy application"],
-    url: "https://go.goodaff.eu/monigo.lk/apply",
+    url: "https://go.goodaff.eu/monigo.lk/vvts4btpmh",
     popular: false
   },
   {
