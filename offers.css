@@ -597,3 +597,144 @@
     max-width: 100%;
     overflow-wrap: break-word;
 }
+/* ——— Disclaimer styles ——— */
+:root{
+  --cl-ink: #244439;
+  --cl-bg:  #f3faf5;
+  --cl-border:#dbe9e0;
+  --cl-accent:#2f8c57;
+}
+
+.cl-disclaimer{
+  display:flex;
+  gap:.75rem;
+  align-items:flex-start;
+  padding:.875rem 1rem;
+  margin:14px 20xp;
+  max-width:780px;          /* прижмёт блок к левому краю контейнера */
+  border:1px solid var(--cl-border);
+  background:var(--cl-bg);
+  color:var(--cl-ink);
+  border-radius:.75rem;
+  font-size:.92rem;
+  line-height:1.5;
+}
+
+.cl-disclaimer__icon{
+  flex:0 0 20px;
+  width:20px;
+  height:20px;
+  fill:var(--cl-accent);
+  margin-top:.15rem;
+}
+
+.cl-disclaimer__text{
+  margin:0;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --cl-ink:#e7f2ec;
+    --cl-bg:#0f1b16;
+    --cl-border:#1f342b;
+    --cl-accent:#8fd3a7;
+  }
+}
+/* ===== Why choose CreditLk block ===== */
+.why-creditlk{
+  /* palette (при желании поменяй только эти переменные) */
+  --bg: #f8fafc;           /* светлый фон блока */
+  --border: #e5e7eb;       /* тонкая рамка */
+  --text: #1f2937;         /* основной текст */
+  --muted: #6b7280;        /* вторичный текст */
+  --accent: #0ea5e9;       /* акцент (чек-марки) */
+
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  line-height: 1.65;
+}
+
+/* заголовок */
+.why-creditlk h2{
+  margin: 0 0 8px 0;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* абзацы */
+.why-creditlk p{
+  margin: 8px 0;
+}
+
+/* список преимуществ — без стандартных буллетов, со своими чек-марками */
+.why-creditlk ul{
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+}
+.why-creditlk li{
+  position: relative;
+  padding-left: 28px;
+  margin: 8px 0;
+}
+.why-creditlk li::before{
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* акценты в тексте */
+.why-creditlk strong{
+  font-weight: 600;
+}
+
+/* сноска/notes */
+.why-creditlk em,
+.why-creditlk .note{
+  color: var(--muted);
+}
+.why-creditlk .note{
+  display: block;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* адаптив: на широких экранах чуть больше «воздуха» */
+@media (min-width: 768px){
+  .why-creditlk{
+    padding: 22px 26px;
+    border-radius: 16px;
+  }
+}
+
+/* тёмная тема (если у пользователя включена) */
+@media (prefers-color-scheme: dark){
+  .why-creditlk{
+    --bg: #0f172a;      /* slate-900 */
+    --border: #1f2937;  /* slate-800 */
+    --text: #e5e7eb;    /* slate-200 */
+    --muted: #9ca3af;   /* slate-400 */
+    --accent: #38bdf8;  /* sky-400 */
+    box-shadow: none;
+  }
+}
+
+/* ===== Микро-дисклеймер под карточками офферов (если используешь) ===== */
+.micro-note{
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+@media (prefers-color-scheme: dark){
+  .micro-note{ color: #9ca3af; }
+}
