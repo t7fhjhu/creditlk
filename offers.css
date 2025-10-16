@@ -1,0 +1,599 @@
+/* CreditLK Offers Page - Namespaced Styles */
+
+/* CSS Custom Properties (Brand Colors) */
+:root {
+    --brand: #047857;
+    --brand-2: #065f46;
+    --text: #2d3748;
+    --muted: #718096;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --background: #f5f7fa;
+    --success: #48bb78;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+}
+
+/* Reset and Base Styles */
+.offers-page * {
+    box-sizing: border-box;
+}
+
+.offers-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--background);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    padding-top: 60px;
+}
+
+.offers-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Sticky Header */
+.offers-page .page-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    height: 60px;
+    z-index: 1000;
+}
+
+.offers-page .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offers-page .header-logo h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--brand);
+}
+
+.offers-page .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.offers-page .lang-toggle {
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.offers-page .lang-toggle:hover {
+    border-color: var(--brand);
+}
+
+.offers-page .lang-toggle:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+}
+
+.offers-page .btn-header-compare {
+    background: var(--brand);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.offers-page .btn-header-compare:hover {
+    background: var(--brand-2);
+}
+
+.offers-page .btn-header-compare:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+}
+
+/* Compact Hero */
+.offers-page .hero {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.offers-page .hero h2 {
+    margin: 0 0 6px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.offers-page .hero p {
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* Trust Badges */
+.offers-page .trust-badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.offers-page .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.offers-page .trust-badge .check-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--brand);
+    flex-shrink: 0;
+}
+
+/* Offers Section */
+.offers-page .offers-section {
+    padding: 24px 0 100px 0;
+}
+
+/* Loans Grid - Mobile First (2 columns) */
+.offers-page #offersList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* Loan Card */
+.offers-page .loan-card {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    word-wrap: anywhere;
+    overflow: hidden;
+}
+
+.offers-page .loan-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.offers-page .loan-card.selected {
+    border: 2px solid var(--brand);
+    padding: 10px;
+}
+
+.offers-page .loan-card .popular-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: var(--brand);
+    color: white;
+    font-size: 8px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.offers-page .loan-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.offers-page .loan-card .bank-logo {
+    max-width: 60px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.offers-page .loan-card .bank-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.offers-page .loan-card .rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--warning);
+    margin-top: 2px;
+}
+
+.offers-page .loan-card .apr-display {
+    text-align: center;
+    background: var(--background);
+    padding: 4px 6px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.offers-page .loan-card .apr-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brand);
+    display: block;
+    line-height: 1.2;
+}
+
+.offers-page .loan-card .apr-label {
+    font-size: 10px;
+    color: var(--muted);
+}
+
+.offers-page .loan-card .loan-details {
+    font-size: 10px;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.offers-page .loan-card .detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+
+.offers-page .loan-card .detail-label {
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.offers-page .loan-card .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    font-size: 10px;
+}
+
+.offers-page .loan-card .features-list li {
+    padding: 2px 0 2px 14px;
+    position: relative;
+    color: var(--text);
+}
+
+.offers-page .loan-card .features-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: 700;
+}
+
+.offers-page .loan-card .card-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.offers-page .loan-card .js-credit-apply {
+    width: 100%;
+    background: var(--brand);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.offers-page .loan-card .js-credit-apply:hover {
+    background: var(--brand-2);
+}
+
+.offers-page .loan-card .js-credit-apply:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+}
+
+.offers-page .loan-card .btn-compare-add {
+    width: 100%;
+    background: transparent;
+    color: var(--brand);
+    border: 1px solid var(--brand);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.offers-page .loan-card .btn-compare-add:hover {
+    background: #eef2ff;
+}
+
+.offers-page .loan-card.selected .btn-compare-add {
+    background: var(--brand);
+    color: white;
+}
+
+/* No Results */
+.offers-page .no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+}
+
+/* Compare Bar */
+.offers-page .compare-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    padding: 12px 16px;
+    z-index: 1000;
+}
+
+.offers-page .compare-bar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.offers-page .compare-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text);
+    flex-wrap: wrap;
+}
+
+.offers-page .compare-count {
+    font-weight: 700;
+    color: var(--brand);
+}
+
+.offers-page .compare-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.offers-page .compare-chip {
+    background: #eef2ff;
+    color: var(--brand);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.offers-page .compare-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.offers-page .btn-compare {
+    background: var(--brand);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.offers-page .btn-compare:hover:not(:disabled) {
+    background: var(--brand-2);
+}
+
+.offers-page .btn-compare:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+}
+
+.offers-page .btn-clear {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.offers-page .btn-clear:hover {
+    background: var(--background);
+    border-color: #a0aec0;
+}
+
+/* Compare Modal */
+.offers-page .compare-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+}
+
+.offers-page .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.offers-page .modal-content {
+    position: relative;
+    background: var(--surface);
+    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 12px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    z-index: 2001;
+}
+
+.offers-page .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    z-index: 1;
+}
+
+.offers-page .modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--text);
+}
+
+.offers-page .btn-close {
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.offers-page .btn-close:hover {
+    color: var(--text);
+}
+
+.offers-page .compare-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px;
+}
+
+/* Tablet and up (3 columns) */
+@media (min-width: 541px) and (max-width: 900px) {
+    .offers-page #offersList {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+    
+    .offers-page .loan-card {
+        padding: 16px;
+    }
+    
+    .offers-page .loan-card .bank-logo {
+        max-width: 80px;
+    }
+    
+    .offers-page .loan-card .bank-name {
+        font-size: 16px;
+    }
+    
+    .offers-page .loan-card .loan-details {
+        font-size: 11px;
+    }
+    
+    .offers-page .loan-card .features-list {
+        font-size: 11px;
+    }
+}
+
+/* Desktop (4 columns) */
+@media (min-width: 901px) {
+    .offers-page #offersList {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    
+    .offers-page .loan-card {
+        padding: 20px;
+    }
+    
+    .offers-page .loan-card .bank-logo {
+        max-width: 120px;
+    }
+    
+    .offers-page .loan-card .bank-name {
+        font-size: 18px;
+    }
+    
+    .offers-page .loan-card .loan-details {
+        font-size: 12px;
+    }
+    
+    .offers-page .loan-card .features-list {
+        font-size: 12px;
+    }
+    
+    .offers-page .compare-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Focus states for accessibility */
+.offers-page button:focus,
+.offers-page a:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+}
+
+/* Prevent horizontal overflow */
+.offers-page,
+.offers-page * {
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
