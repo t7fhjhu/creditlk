@@ -112,6 +112,49 @@
     outline-offset: 2px;
 }
 
+/* Header: Home button */
+.offers-page .btn-header-home{
+    background: transparent;
+    color: var(--brand);
+    border: 1px solid var(--brand);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.offers-page .btn-header-home:hover{
+    background: #eef2ff;
+    color: var(--brand-2);
+    border-color: var(--brand-2);
+}
+
+.offers-page .btn-header-home:active{
+    transform: translateY(1px);
+}
+
+.offers-page .btn-header-home:focus{
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+}
+
+/* Optional: hide text wrap on ultra-narrow screens */
+@media (max-width: 480px){
+    .offers-page .btn-header-home,
+    .offers-page .btn-header-compare{
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+}
+
 /* Compact Hero */
 .offers-page .hero {
     background: var(--surface);
@@ -610,7 +653,7 @@
   gap:.75rem;
   align-items:flex-start;
   padding:.875rem 1rem;
-  margin:14px 20xp;
+  margin:14px 20px;
   max-width:780px;          /* прижмёт блок к левому краю контейнера */
   border:1px solid var(--cl-border);
   background:var(--cl-bg);
