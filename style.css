@@ -1568,3 +1568,121 @@ html[lang="si"] .features-list li { font-size: 0.82rem; line-height: 1.3; }
 html[lang="si"] .loan-actions { gap: 0.5rem; }
 html[lang="si"] .btn-apply,
 html[lang="si"] .btn-select { padding: 0.55rem 0.65rem; font-size: 0.8rem; }
+/* ===== Loan Information (CreditLK) ===== */
+.clk-policy {
+  padding: 60px 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.clk-policy__wrap {
+  max-width: 680px;       /* СУЖЕННАЯ ширина (было 800px) */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  text-align: center;
+}
+
+.clk-policy__title {
+  font-size: clamp(1.8rem, 2.8vw, 2.25rem);
+  line-height: 1.25;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 16px;
+}
+
+.clk-policy__intro {
+  color: #475569;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+  max-width: 60ch;       /* перенос текста по длине предложения */
+}
+
+.clk-policy__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.clk-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #fff;
+  padding: 20px 22px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.clk-card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.clk-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #334155;
+  max-width: 60ch;       /* перенос текста в списке */
+}
+.clk-list li {
+  margin: 8px 0;
+  line-height: 1.55;
+}
+
+.clk-policy__block {
+  margin-top: 8px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 20px;
+  text-align: left;
+}
+
+.clk-policy__subtitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+.clk-policy__block p {
+  color: #475569;
+  max-width: 60ch;        /* перенос для блока Important */
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.clk-disclaimer {
+  margin-top: 28px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  max-width: 60ch;        /* перенос текста в disclaimer */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.clk-disclaimer__text {
+  color: #475569;
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+
+.clk-disclaimer__brand {
+  color: #64748b;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .clk-policy__wrap {
+    max-width: 90%;
+  }
+  .clk-card {
+    padding: 16px;
+  }
+}
