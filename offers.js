@@ -307,7 +307,15 @@ window.OffersPage = (function() {
         ${loan.popular ? `<span class="popular-badge">${t('popular')}</span>` : ''}
         
         <div class="card-header">
-          <img src="${loan.logo}" alt="${loan.name} logo" class="bank-logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%2240%22%3E%3Crect fill=%22%23eee%22 width=%22120%22 height=%2240%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2212%22 fill=%22%23999%22%3E${loan.name}%3C/text%3E%3C/svg%3E'">
+          <img
+            src="${loan.logo}"
+            alt="${loan.name} logo"
+            class="bank-logo"
+            width="120" height="48"
+            decoding="async"
+            loading="${index > 3 ? 'lazy' : 'eager'}"
+            fetchpriority="${index === 0 ? 'high' : 'auto'}"
+            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%2248%22%3E%3Crect fill=%22%23eee%22 width=%22120%22 height=%2248%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2212%22 fill=%22%23999%22%3E${loan.name}%3C/text%3E%3C/svg%3E'">
           <div>
             <h3 class="bank-name">${loan.name}</h3>
             <div class="rating">
@@ -357,7 +365,10 @@ window.OffersPage = (function() {
         </div>
       </article>
     `).join('');
-    
+    // remove skeleton placeholders once content is rendered
+    if (container.classList.contains('skeleton-grid')) {
+      container.classList.remove('skeleton-grid');
+    }
     // Attach event listeners
     attachApplyListeners();
     attachCompareListeners();
@@ -488,7 +499,15 @@ window.OffersPage = (function() {
     compareCards.innerHTML = selectedLoanData.map(loan => `
       <article class="loan-card" data-loan-id="${loan.id}">
         <div class="card-header">
-          <img src="${loan.logo}" alt="${loan.name} logo" class="bank-logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%2240%22%3E%3Crect fill=%22%23eee%22 width=%22120%22 height=%2240%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2212%22 fill=%22%23999%22%3E${loan.name}%3C/text%3E%3C/svg%3E'">
+          <img
+            src="${loan.logo}"
+            alt="${loan.name} logo"
+            class="bank-logo"
+            width="120" height="48"
+            decoding="async"
+            loading="eager"
+            fetchpriority="auto"
+            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%2248%22%3E%3Crect fill=%22%23eee%22 width=%22120%22 height=%2248%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2212%22 fill=%22%23999%22%3E${loan.name}%3C/text%3E%3C/svg%3E'">
           <div>
             <h3 class="bank-name">${loan.name}</h3>
             <div class="rating">

@@ -28,6 +28,7 @@
     padding: 0;
     min-height: 100vh;
     padding-top: 60px;
+    padding-bottom: 84px; /* reserve space for fixed compare bar to reduce CLS */
 }
 
 .offers-page .container {
@@ -226,6 +227,29 @@
     transition: transform 0.2s, box-shadow 0.2s;
     word-wrap: anywhere;
     overflow: hidden;
+    min-height: 260px;                 /* reserve vertical space */
+    contain: layout paint;             /* isolate layout/paint for perf */
+}
+
+@supports (content-visibility: auto) {
+  .offers-page .loan-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 260px; /* prevent jump when revealed */
+  }
+}
+
+/* Skeleton placeholders (reduce CLS before JS renders) */
+.skeleton-grid .loan-card.skeleton{
+    min-height: 230px;
+    border-radius: 8px;
+    background: linear-gradient(90deg,#f3f4f6 25%,#e5e7eb 37%,#f3f4f6 63%);
+    background-size: 400% 100%;
+    animation: clk-skel 1.2s ease-in-out infinite;
+    box-shadow: 0 2px 4px rgba(0,0,0,.06);
+}
+@keyframes clk-skel {
+    0% { background-position: 100% 0; }
+    100% { background-position: 0 0; }
 }
 
 .offers-page .loan-card:hover {
@@ -260,9 +284,12 @@
 }
 
 .offers-page .loan-card .bank-logo {
-    max-width: 60px;
-    height: auto;
+    width: 60px;
+    height: 24px;
     flex-shrink: 0;
+    object-fit: contain;
+    aspect-ratio: 5 / 2;
+    display: block;
 }
 
 .offers-page .loan-card .bank-name {
@@ -381,6 +408,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
+    min-height: 40px;
 }
 
 .offers-page .loan-card .btn-compare-add:hover {
@@ -409,6 +437,7 @@
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     padding: 12px 16px;
     z-index: 1000;
+    height: 72px; /* stabilize layout height */
 }
 
 .offers-page .compare-bar-content {
@@ -579,7 +608,8 @@
     }
     
     .offers-page .loan-card .bank-logo {
-        max-width: 80px;
+        width: 80px;
+        height: 32px;
     }
     
     .offers-page .loan-card .bank-name {
@@ -607,7 +637,8 @@
     }
     
     .offers-page .loan-card .bank-logo {
-        max-width: 120px;
+        width: 120px;
+        height: 48px;
     }
     
     .offers-page .loan-card .bank-name {
@@ -780,4 +811,13 @@
 }
 @media (prefers-color-scheme: dark){
   .micro-note{ color: #9ca3af; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .offers-page * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
