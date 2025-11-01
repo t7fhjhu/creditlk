@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>window.GA4_ID='G-V5BJFQ8G10';</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-V5BJFQ8G10"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-V5BJFQ8G10'); // включит cookie и даст gtag('get',...)
+    <!-- Preconnect: картинки/партнёры -->
+<link rel="preconnect" href="https://go.goodaff.eu" crossorigin>
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="dns-prefetch" href="https://go.goodaff.eu">
 
+<!-- Приоритет первому лого (часто LCP) -->
+<link rel="preload" as="image" href="assets/logos/cashx.png" imagesrcset="assets/logos/cashx.png 1x" imagesizes="120px" fetchpriority="high">
+    <script>window.GA4_ID='G-V5BJFQ8G10';</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V5BJFQ8G10"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config','G-V5BJFQ8G10');
+    </script>
     <!-- Google Tag Manager -->
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id=GTM-MP6CXZ72'+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MP6CXZ72');</script>
-<!-- End Google Tag Manager -->
+    <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MP6CXZ72');
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <meta name="robots" content="noindex,follow"> -->
@@ -91,7 +104,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- Offers Section -->
         <section class="offers-section">
             <div class="container">
-                <div id="offersList" class="loans-grid"></div>
+                <div id="offersList" class="loans-grid skeleton-grid">
+                  <article class="loan-card skeleton"></article>
+                  <article class="loan-card skeleton"></article>
+                  <article class="loan-card skeleton"></article>
+                  <article class="loan-card skeleton"></article>
+                </div>
                 <div id="noResults" class="no-results" style="display: none;">
                     <p data-i18n="no_results">No loan offers available at the moment.</p>
                 </div>
@@ -237,7 +255,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </div>
     </footer>
-    <script src="offers.js"></script>
+    <script src="offers.js" defer></script>
 </body>
 
 </html>
